@@ -1,0 +1,807 @@
+@import 'css/basics.scss';
+
+// TODO better solution to get rid this ugly blue outline on focus
+[contenteditable]:focus, // removes ckeditor 4 & contenteditable border
+.input-multiselect .select-group.focus,
+.input-multiselect .select-group:focus,
+input[type='checkbox']:focus,
+input[type='checkbox'].focus,
+input[type='radio']:focus,
+input[type='radio'].focus,
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before,
+.custom-control-input:focus ~ .custom-control-label::before,
+a.active.focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a:active:focus,
+a:focus,
+button.active.focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button:active:focus,
+button:focus,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+    outline: none !important;
+    outline-color: transparent !important;
+    outline-width: 0 !important;
+    outline-style: none !important;
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0) !important;
+}
+
+.cke.cke_float {
+    top: 0px !important;
+    right: 0px !important;
+    left: unset !important;
+    bottom: unset !important;
+    a {
+        cursor: pointer;
+    }
+}
+
+.cke_screen_reader_only {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.cke_combopanel__styles {
+    width: 150px !important;
+    height: 50vh !important;
+}
+
+.cms-controls {
+    a {
+        cursor: pointer;
+        &.ckmod_button {
+            cursor: pointer;
+            height: 16px;
+            line-height: 16px;
+        }
+    }
+
+    .icontest {
+        position: absolute;
+        top: 200px !important;
+        left: 800px !important;
+        right: unset !important;
+        bottom: unset !important;
+    }
+
+    .control-bar {
+        position: absolute;
+        // z-index: 9999;
+        top: unset !important;
+        left: unset !important;
+        right: 5px !important;
+        bottom: 5px !important;
+    }
+    .ckmod_dialog_container {
+        background-color: #00000059;
+        display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -webkit-flex; /* NEW - Chrome */
+        display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        flex-direction: row;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .ckmod_dialog {
+            margin: auto;
+            .ckmod_dialog_contents_body {
+                width: 450px;
+                height: 240px;
+                .ckmod_dialog_ui_vbox {
+                    // needed ??
+                    width: 100%;
+                    min-height: 100%;
+                    table {
+                        width: 100%;
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mobile-navigatorXX {
+    .world-box {
+        &.show {
+            opacity: 1 !important;
+            transition: opacity 0.2s linear;
+        }
+        &.initial {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                hsl(222, 19%, 63%) 0px,
+                #535b6f 250px,
+                #b5bbba 800px,
+                #e1e2da 1800px,
+                #cac9c6 2300px,
+                #646c7e 3900px
+            );
+        }
+        &.start,
+        &.default {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                #6284d3 0px,
+                #324c8b 250px,
+                #6ec4bb 800px,
+                #e8ebc9 1800px,
+                #e6e0bc 2300px,
+                #646c7e 3900px
+            );
+        }
+        &.running {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                rgb(255, 204, 253) 0px,
+                rgb(51, 167, 222) 350px,
+                rgb(160, 251, 217) 800px,
+                rgb(172, 235, 255) 1800px,
+                rgb(163, 216, 247) 2300px,
+                rgb(100, 108, 126) 3900px
+            );
+        }
+        &.running-bak {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                #fffb59 0px,
+                #ff7414 250px,
+                #4e81c3 800px,
+                #e8ebc9 1800px,
+                #e6e0bc 2300px,
+                #646c7e 3900px
+            );
+        }
+        &.welcome,
+        &.structure {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                rgb(112, 242, 255) 0px,
+                rgb(168, 117, 224) 250px,
+                rgb(112, 163, 255) 800px,
+                rgb(232, 235, 201) 1800px,
+                rgb(230, 224, 188) 2300px,
+                rgb(100, 108, 126) 3900px
+            );
+        }
+        &.welcome-bak,
+        &.legal {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                #b6506b 0px,
+                #566bb2 250px,
+                #7bb2ce 800px,
+                #e8ebc9 1800px,
+                #e6e0bc 2300px,
+                #646c7e 3900px
+            );
+        }
+
+        &.finalize {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                #e60417 0px,
+                #ff853e 250px,
+                #69a2f1 800px,
+                #e8ebc9 1800px,
+                #e6e0bc 2300px,
+                #646c7e 3900px
+            );
+        }
+        &.tools {
+            opacity: 0;
+            position: absolute;
+            background-image: linear-gradient(
+                160deg,
+                #b96fca 0px,
+                #593c60 250px,
+                #6e92e8 800px,
+                #e8ebc9 1800px,
+                #e6e0bc 2300px,
+                #646c7e 3900px
+            );
+        }
+    }
+}
+
+// .color-worlds.background .bg.key
+
+// .color-worlds .item.nav-bubble.load-style.KEY
+
+.color-worlds {
+    &.background {
+        .bg {
+            width: 100vw;
+            height: 100vh;
+            min-width: 5000px;
+            min-height: 4000px;
+            position: absolute;
+            opacity: 0;
+            &.show {
+                opacity: 1 !important;
+                transition: opacity 0.2s linear;
+            }
+            &.initial {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    hsl(222, 19%, 63%) 0px,
+                    #535b6f 250px,
+                    #b5bbba 800px,
+                    #e1e2da 1800px,
+                    #cac9c6 2300px,
+                    #646c7e 3900px
+                );
+            }
+            &.start,
+            &.default {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    #6284d3 0px,
+                    #324c8b 250px,
+                    #6ec4bb 800px,
+                    #e8ebc9 1800px,
+                    #e6e0bc 2300px,
+                    #646c7e 3900px
+                );
+            }
+            &.running {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    rgb(255, 204, 253) 0px,
+                    rgb(51, 167, 222) 350px,
+                    rgb(160, 251, 217) 800px,
+                    rgb(172, 235, 255) 1800px,
+                    rgb(163, 216, 247) 2300px,
+                    rgb(100, 108, 126) 3900px
+                );
+            }
+            &.running-bak {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    #fffb59 0px,
+                    #ff7414 250px,
+                    #4e81c3 800px,
+                    #e8ebc9 1800px,
+                    #e6e0bc 2300px,
+                    #646c7e 3900px
+                );
+            }
+            &.welcome,
+            &.structure {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    rgb(112, 242, 255) 0px,
+                    rgb(168, 117, 224) 250px,
+                    rgb(112, 163, 255) 800px,
+                    rgb(232, 235, 201) 1800px,
+                    rgb(230, 224, 188) 2300px,
+                    rgb(100, 108, 126) 3900px
+                );
+            }
+            &.welcome-bak,
+            &.legal {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    #b6506b 0px,
+                    #566bb2 250px,
+                    #7bb2ce 800px,
+                    #e8ebc9 1800px,
+                    #e6e0bc 2300px,
+                    #646c7e 3900px
+                );
+            }
+
+            &.finalize {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    #e60417 0px,
+                    #ff853e 250px,
+                    #69a2f1 800px,
+                    #e8ebc9 1800px,
+                    #e6e0bc 2300px,
+                    #646c7e 3900px
+                );
+            }
+            &.tools {
+                opacity: 0;
+                position: absolute;
+                background-image: linear-gradient(
+                    160deg,
+                    #b96fca 0px,
+                    #593c60 250px,
+                    #6e92e8 800px,
+                    #e8ebc9 1800px,
+                    #e6e0bc 2300px,
+                    #646c7e 3900px
+                );
+            }
+        }
+        .shore.p1 {
+            &.default,
+            &.start {
+                filter: contrast(138%) hue-rotate(49deg);
+                opacity: 0.4;
+            }
+            &.finalize {
+                filter: contrast(150%) hue-rotate(205deg);
+                // filter: saturate(0);
+                opacity: 0.5;
+            }
+            &.welcome,
+            &.structure {
+                filter: contrast(180%) hue-rotate(66deg);
+                opacity: 0.5;
+            }
+            &.tools {
+                filter: contrast(405%) hue-rotate(443deg);
+                opacity: 0.5;
+            }
+            &.running {
+                filter: contrast(150%) hue-rotate(64deg);
+                opacity: 0.5;
+            }
+            &.running-bak {
+                filter: contrast(150%) hue-rotate(205deg);
+                opacity: 0.5;
+            }
+            &.legal {
+                filter: contrast(180%) hue-rotate(66deg);
+                opacity: 0.5;
+            }
+        }
+        .beam {
+            &.default,
+            &.start {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 40%,
+                    rgba(0, 184, 255, 0.15) 70%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+            &.finalize {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 40%,
+                    rgba(104, 164, 236, 0.3) 70%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+            }
+            &.welcome,
+            &.structure {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 45%,
+                    rgba(0, 126, 255, 0.24) 55%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+            &.tools {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 40%,
+                    rgba(255, 0, 174, 0.15) 70%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+            &.running {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 40%,
+                    rgba(255, 118, 0, 0.2) 70%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+            &.running-back {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 40%,
+                    rgba(255, 118, 0, 0.2) 70%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+            &.legal {
+                background-image: linear-gradient(
+                    to left,
+                    #fbfbfbb5 0px,
+                    #6ea3ef 45%,
+                    rgba(0, 126, 255, 0.24) 55%,
+                    rgba(255, 105, 29, 0) 100%
+                );
+                opacity: 0.9;
+            }
+        }
+    }
+    .item.nav-bubble {
+        &.load-style {
+            content: "{ 'hoverBrightness':1.15 }";
+            &.initial {
+                background-image: linear-gradient(to right, rgba(253, 253, 253, 0.7), rgba(188, 189, 189, 0.7));
+                &.selected {
+                    background-image: linear-gradient(
+                        to top,
+                        rgba(241, 240, 238, 0.9) 45%,
+                        rgba(177, 189, 184, 0.9) 100%
+                    );
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, rgba(188, 189, 189, 0.7), rgba(253, 253, 253, 1));
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(242, 242, 242, 0.9) 100%);
+                }
+            }
+            &.start,
+            &.default {
+                background-image: linear-gradient(to right, rgb(184, 255, 203), rgb(98, 130, 197));
+                &.selected {
+                    background-image: linear-gradient(
+                        to top,
+                        rgba(255, 251, 229, 0.9) 45%,
+                        rgba(128, 210, 176, 0.9) 100%
+                    );
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, rgba(128, 210, 176, 0.9), rgba(255, 251, 229, 1));
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to right, rgb(218, 255, 240), rgba(255, 251, 229, 0.9));
+                }
+            }
+            &.finalize {
+                background-image: linear-gradient(to right, rgba(254, 255, 210, 0.7), #ff957b);
+                &.selected {
+                    background-image: linear-gradient(to top, #feead8 45%, #ffa486 100%);
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, rgba(255, 149, 123, 0.7), rgba(254, 255, 210, 1));
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(255, 234, 221, 0.9) 100%);
+                }
+            }
+            &.welcome,
+            &.structure {
+                background-image: linear-gradient(to right, #f9efff, #c1a7ff);
+                &.selected {
+                    background-image: linear-gradient(to top, #fff, #c1a7ff);
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, #c1a7ff, #f9efff);
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(255, 255, 255, 0.9) 100%);
+                }
+            }
+            &.tools {
+                background-image: linear-gradient(to right, rgb(229, 198, 255), #b88ebd);
+
+                &.selected {
+                    background-image: linear-gradient(to top, #ecdff5 45%, rgb(197, 152, 255) 100%);
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, #b88ebd, rgb(229, 198, 255));
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(255, 228, 252, 0.9) 100%);
+                }
+            }
+            &.running {
+                background-image: linear-gradient(to right, rgba(237, 225, 243, 1), rgba(134, 176, 253, 1));
+                &.selected {
+                    background-image: linear-gradient(to top, #effcff 34%, #6cb8f9 100%);
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, rgba(133, 175, 253, 1), rgba(203, 209, 245, 1));
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(237, 225, 243, 1));
+                }
+            }
+            &.legal {
+                background-image: linear-gradient(to right, #e3ddff, #bcabe0);
+                &.selected {
+                    background-image: linear-gradient(to top, #fff, #d9beff);
+                }
+                &:hover,
+                &.hover {
+                    background-image: linear-gradient(to right, #bcabe0, #e3ddff);
+                }
+                &:active,
+                &.active {
+                    background-image: linear-gradient(to top right, rgba(255, 255, 255, 0.9) 100%);
+                }
+            }
+        }
+    }
+    &.content {
+        .bg {
+            &.initial {
+                background-image: linear-gradient(96deg, #bdbdbd, white 80px, white calc(100% - 80px), #d5d5d5);
+            }
+            &.default,
+            &.start {
+                background-image: linear-gradient(96deg, #95cfec, white 80px, white calc(100% - 80px), #acece1);
+            }
+            &.finalize {
+                background-image: linear-gradient(96deg, #fbc4a1, white 80px, white calc(100% - 80px), #b9d8fb);
+            }
+            &.welcome,
+            &.structure {
+                background-image: linear-gradient(96deg, #c8beef, white 80px, white calc(100% - 80px), #b6dce8);
+            }
+            &.tools {
+                background-image: linear-gradient(96deg, #e8cdfd, white 80px, white calc(100% - 80px), #b5ceff);
+            }
+            &.running {
+                background-image: linear-gradient(96deg, #97ccf9, white 80px, white calc(100% - 80px), #98fff1);
+            }
+            &.running-bak {
+                background-image: linear-gradient(96deg, #ffaa6f, white 80px, white calc(100% - 80px), #98caff);
+            }
+            &.legal {
+                background-image: linear-gradient(96deg, #c8beef, white 80px, white calc(100% - 80px), #b6dce8);
+            }
+        }
+        .scroll-handler.load-style {
+            &.initial {
+                background-color: rgb(193, 193, 193);
+            }
+            &.default,
+            &.start {
+                background-color: #a2eae0;
+            }
+            &.finalize {
+                background-color: #add2ff;
+            }
+            &.welcome,
+            &.structure {
+                background-color: #b1d8ff;
+            }
+            &.tools {
+                background-color: #b4a7ff;
+            }
+            &.running {
+                background-color: #a2bafd;
+            }
+            &.legal {
+                background-color: #b1d8ff;
+            }
+        }
+    }
+    &.sub-nav {
+        color: #ffffff;
+        &.initial {
+            background-image: linear-gradient(to top, rgb(207, 212, 218), rgba(224, 237, 236, 0.78));
+        }
+        &.default,
+        &.start {
+            background-image: linear-gradient(to top, #22a79d, rgba(180, 249, 243, 0.78));
+        }
+        &.finalize {
+            background-image: linear-gradient(to top, #5895d6, #b0e2ff);
+        }
+        &.welcome,
+        &.structure {
+            background-image: linear-gradient(to top, #498bd0b8, rgb(193, 243, 255));
+        }
+        &.tools {
+            background-image: linear-gradient(to top, #6c7baf, rgba(143, 214, 241, 0.42));
+        }
+        &.running {
+            background-image: linear-gradient(to top, #60a1d8c2, rgba(79, 224, 220, 0.45));
+        }
+        &.running-bak {
+            background-image: linear-gradient(to top, rgba(132, 186, 243, 1), rgba(175, 247, 241, 0.78));
+        }
+    }
+}
+
+// CMS content / body text styling
+// ( referred by public/lib/ckeditor/config.js // config.stylesSet )
+
+.content {
+    table,
+    td,
+    tr,
+    th {
+        border: 0;
+    }
+    .text {
+        ul {
+            margin-block-start: 6px;
+            margin-block-end: 6px;
+        }
+        p {
+            margin-block-start: 4px;
+            margin-block-end: 4px;
+        }
+        //
+        .headline-main {
+            font-size: 26px;
+            line-height: 28px;
+            color: #334e6b;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .headline-sub {
+            font-size: 22px;
+            line-height: 24px;
+            color: #4074ad;
+            margin-bottom: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .body-link {
+            a {
+                color: #456d7d;
+                text-decoration: none;
+                font-weight: bold;
+                // font-style: italic;
+                quotes: '«' '»' '‹' '›';
+                &::before {
+                    // content: '\201C';
+                    content: open-quote;
+                    // line-height: 20px;
+                    // vertical-align: text-top;
+                    margin-right: 1px;
+                }
+                &::after {
+                    // content: '\201D';
+                    content: close-quote;
+                    // line-height: 20px;
+                    // vertical-align: text-top;
+                    margin-left: 1px;
+                }
+            }
+        }
+        a,
+        .body-text {
+            font-size: 16px;
+            color: #20354c;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .body-teaser {
+            font-size: 16px;
+            color: #334e6b;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+        .body-headline {
+            font-size: 20px;
+            color: #316592;
+            font-weight: bold;
+            margin-top: 7px;
+            margin-bottom: 8px;
+            text-align: left;
+            &.px0 {
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            &.green {
+                color: #27ae60;
+            }
+        }
+        .body-head-comment {
+            color: #8158bd;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .body-intended {
+            margin-left: 10px;
+            &.green {
+                color: #16a085;
+            }
+            &.red {
+                color: #e74c3c;
+            }
+        }
+        .distance {
+            color: gray;
+            &.px4 {
+                font-size: 4px;
+                line-height: 4px;
+            }
+            &.px8 {
+                font-size: 8px;
+                line-height: 8px;
+            }
+        }
+        .info-box {
+            background: #f5f8ff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-bottom: 6px;
+            &.blue {
+                background-color: #e5f5fd;
+            }
+            &.red {
+                background-color: #fff0f0;
+            }
+            &.green {
+                background-color: #eafff0;
+            }
+            &.yellow {
+                background-color: #fffce7;
+            }
+            &.teaser-tools {
+                background-color: #e8dfff;
+                border-color: #c5adef;
+            }
+            &.teaser-start {
+                background-color: #cffff4;
+                border-color: #6fd3d8;
+            }
+        }
+    }
+}

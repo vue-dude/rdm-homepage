@@ -1,0 +1,7 @@
+SVG from affinity designer:
+
+- export as eps postscript level 3
+- import eps in inkscape wit settings: 
+--poppler/cairo import
+-- replace fonts off
+-- embed images off
