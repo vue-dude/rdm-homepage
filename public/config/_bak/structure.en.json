@@ -25,7 +25,8 @@
             "sub": {
                 "intro": {},
                 "website": {},
-                "contact": {}
+                "contact": {},
+                "credits": {}
             }
         },
         "start": {
@@ -34,13 +35,7 @@
                 "dataManagementPlans": {},
                 "legalAndEthical": {},
                 "fileHandling": {},
-                "fileFormats": {
-                    "sub": {
-                        "__0": {},
-                        "subPdf": {},
-                        "subJpeg": {}
-                    }
-                },
+                "fileFormats": {},
                 "sustainabilityFactors": {},
                 "pdfFormat": {}
             }
@@ -76,10 +71,10 @@
                     "circleNav": false
                 },
                 "imprint": {
-                    "circleNav": false
+                     "circleNav": false
                 },
                 "privacy": {
-                    "circleNav": false
+                     "circleNav": false
                 }
             }
         }

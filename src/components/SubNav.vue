@@ -2,6 +2,7 @@
     <div class="sub-nav color-worlds" :class="$store.state.colorWorld">
         <div class="main hidden" v-html="$t(routePathList[0])"></div>
         <div class="sub hidden" v-html="$t(routePathList[1])"></div>
+        <div class="level3 hidden" v-html="$t(routePathList[2])"></div>
         <div
             class="inner"
             :class="{ clickable: canOpenMobileNav }"
@@ -11,6 +12,8 @@
                 <div>{{ path.main }}</div>
                 <div class="sp">/</div>
                 <div>{{ path.sub }}</div>
+                <div v-if="path.level3" class="sp">/</div>
+                <div>{{ path.level3 }}</div>
             </div>
         </div>
         <div class="nav">
@@ -37,8 +40,10 @@ export default {
             path: {
                 main: '',
                 sub: '',
+                level3: '',
                 mainKey: null,
-                subKey: null
+                subKey: null,
+                level3Key: null
             },
             showPath: null,
             showPathTimeout: null,
@@ -58,6 +63,7 @@ export default {
             this.canOpenMobileNav = $(window).width() < globals.MOBILE_NAV_SWITCH
         },
         onRouteWillChange(args) {
+            // TODO may needs update for level 3 !
             if (args.mainKey !== this.path.mainKey || args.subKey !== this.path.subKey) {
                 this.path.mainKey = args.mainKey
                 this.path.subKey = args.subKey
@@ -104,6 +110,14 @@ export default {
                 txt = txt.split('\n').join(' ')
                 txt.trim()
                 this.path.sub = txt
+                //
+                // TODO level3 / i18n check and do proper implementation
+                // may needs update to the onRouteWillChange event
+                txt = $('.sub-nav .level3').text()
+                txt = txt.split('\n').join(' ')
+                txt.trim()
+                this.path.level3 = txt
+
             }, 150)
             //
             return res

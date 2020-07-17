@@ -408,7 +408,8 @@ export default {
         },
         routeNeedsUpdate(keys) {
             const diff = _.difference(keys, [this.selectedMain, this.selectedSub])
-            return diff.length > 0 || keys.length < 2
+            const level3Detected = _.isString(keys[2])
+            return level3Detected ? false : diff.length > 0 || keys.length < 2
         },
         onMouseMoveSub(evt) {
             //

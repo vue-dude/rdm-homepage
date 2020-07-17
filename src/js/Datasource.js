@@ -57,7 +57,6 @@ function Datasource() {
     }
     this.getPath = getPath
 
-
     const updateMediaPaths = html => {
         if (_.isString(html)) {
             let path = getPath('/media/') // flat file mode
@@ -75,6 +74,13 @@ function Datasource() {
         return axios.create().post(getPath(api), data, options)
     }
 
+    const getValidI18nKey = i18nKey => {
+        const trns = _.get(config.translations, `${globals.getLocale()}.${i18nKey}.__0`)
+        return _.isString(trns) ? `${i18nKey}.__0` : i18nKey
+    }
+    this.getValidI18nKey = getValidI18nKey
+
+    // only UI elements
     const setTranslationFallbacks = (translations, lng, key, i18n) => {
         let strg = _.get(translations, `${lng}.${i18n}`)
         if (!_.isString(strg)) {
@@ -87,15 +93,18 @@ function Datasource() {
     }
 
     const addTranslations = trns => {
+        // trns == new loaded
         _.each(trns, (tr, lng) => {
-            _.each(config.structure.navigation, (main, key) => {
-                setTranslationFallbacks(trns, lng, key, main.i18nKey)
-                const add = _.get(trns, `${lng}.special.ui.nav.${key}`) || {}
-                add.icon = _.isString(add.icon) ? add.icon : key
-                config.structure.navigation[key] = { ...main, ...add }
-
-                _.each(main.sub, (sub, subKey) => {
-                    setTranslationFallbacks(trns, lng, subKey, sub.i18nKey)
+            _.each(config.structure.navigation, (l1, keyL1) => {
+                setTranslationFallbacks(trns, lng, keyL1, l1.i18nKey)
+                const add = _.get(trns, `${lng}.special.ui.nav.${keyL1}`) || {}
+                add.icon = _.isString(add.icon) ? add.icon : keyL1
+                config.structure.navigation[keyL1] = { ...l1, ...add }
+                _.each(l1.sub, (l2, keyL2) => {
+                    setTranslationFallbacks(trns, lng, keyL2, l2.i18nKey)
+                    _.each(l2.sub, (l3, keyL3) => {
+                        setTranslationFallbacks(trns, lng, keyL3, l3.i18nKey)
+                    })
                 })
             })
         })
@@ -126,6 +135,7 @@ function Datasource() {
             .then(res => {
                 updateConfig(res.data)
                 config.structure = generateStructure(res.data)
+                console.log('DS:getStructure config.structure = ', config.structure)
                 return config.structure
             })
             .catch(error => console.warn('DS:getStructure ERROR error.message = ', error.message))
@@ -145,50 +155,80 @@ function Datasource() {
         const navigation = {}
         const routes = []
         // navigation
-        _.each(raw.structure, (item, key) => {
-            const ui = _.get(raw, `ui.nav.${key}`) || {}
-            const nav = (navigation[key] = { ...item, ...ui })
-            nav.i18nKey = `nav.${key}.label`
+        _.each(raw.structure, (itemL1, keyL1) => {
+            const ui = _.get(raw, `ui.nav.${keyL1}`) || {}
+            const nav = (navigation[keyL1] = { ...itemL1, ...ui })
+            nav.i18nKey = `nav.${keyL1}.label`
             nav.sub = {}
             // router
             const mainRoute = {
-                path: key,
+                path: keyL1,
                 // name: key,
                 // alias: `${key}/*`,
                 props: true,
                 params: {
-                    mainKey: key
+                    mainKey: keyL1
                 },
                 meta: {
-                    mainKey: key,
+                    mainKey: keyL1,
                     subKey: null,
-                    i18nKey: `nav.${key}.label`
+                    i18nKey: `nav.${keyL1}.label`
                 },
                 children: []
             }
             routes.push(mainRoute)
 
-            _.each(item.sub, (item, subKey) => {
+            _.each(itemL1.sub, (itemL2, keyL2) => {
                 // navigation
-                item = _.isPlainObject(item) ? item : {}
-                item.i18nKey = `nav.${key}.sub.${subKey}.label`
-                item.circleNav = item.circleNav !== false
-                navigation[key].sub[subKey] = item
+                itemL2 = _.isPlainObject(itemL2) ? itemL2 : {}
+                itemL2.i18nKey = `nav.${keyL1}.sub.${keyL2}.label`
+                itemL2.circleNav = itemL2.circleNav !== false
+                navigation[keyL1].sub[keyL2] = itemL2
                 // router
                 mainRoute.children.push({
-                    path: subKey,
+                    path: keyL2,
                     props: true,
                     params: {
-                        subKey
+                        subKey: keyL2
                     },
                     meta: {
-                        mainKey: key,
-                        subKey: subKey,
-                        i18nKey: `nav.${key}.sub.${subKey}.label`
+                        mainKey: keyL1,
+                        subKey: keyL2,
+                        i18nKey: `nav.${keyL1}.sub.${keyL2}.label`
                     }
                 })
                 // circle navigation
-                item.circleNav ? config.circleNav.push(`/${key}/${subKey}`) : null
+                itemL2.circleNav ? config.circleNav.push(`/${keyL1}/${keyL2}`) : null
+
+                const subRoute = _.last(mainRoute.children)
+                subRoute.children = []
+
+                _.each(itemL2.sub, (itemL3, keyL3) => {
+                    // navigation
+                    itemL3 = _.isPlainObject(itemL3) ? itemL3 : {}
+                    itemL3.i18nKey = `nav.${keyL1}.sub.${keyL2}.sub.${keyL3}.label`
+                    itemL3.circleNav = itemL3.circleNav !== false
+                    navigation[keyL1].sub[keyL2].sub[keyL3] = itemL3
+                    // router
+                    if (keyL3 !== '__0') {
+                        subRoute.children.push({
+                            path: keyL3,
+                            props: true,
+                            params: {
+                                keyL3
+                            },
+                            meta: {
+                                mainKey: keyL1,
+                                subKey: keyL2,
+                                keyL3,
+                                i18nKey: `nav.${keyL1}.sub.${keyL2}.sub.${keyL3}.label`
+                            }
+                        })
+
+                        // circle navigation
+                        itemL3.circleNav ? config.circleNav.push(`/${keyL1}/${keyL2}/${keyL3}`) : null
+                    }
+                })
             })
         })
 

@@ -52,7 +52,7 @@ export default {
     },
     created() {
         const keys = globals.getCurrentRouterPath().keys
-        this.i18nKey = `content.${keys.join('.')}`
+        this.i18nKey = datasource.getValidI18nKey(`content.${keys.join('.')}`)
         globals.eventBus.$on('routeWillChange', this.onRouteWillChange)
         globals.eventBus.$on('cmsEvent', this.onCmsEvent)
     },
@@ -70,7 +70,7 @@ export default {
         $route(to, from) {
             const keys = globals.getCurrentRouterPath().keys
             setTimeout(() => {
-                this.i18nKey = `content.${keys.join('.')}`
+                this.i18nKey = datasource.getValidI18nKey(`content.${keys.join('.')}`)
                 this.scrollArea.scrollTop = 0
                 this.scrollArea.scrollLeft = 0
                 this.showContent = true
