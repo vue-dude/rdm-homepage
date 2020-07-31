@@ -65,6 +65,9 @@ function Datasource() {
             }
             html = html.split('src="/media/').join(`src="${path}`)
         }
+        if (!globals.WEBP_ENABLED) {
+            html = html.split('.webp"').join('.jpg"')
+        }
         return html
     }
     this.updateMediaPaths = updateMediaPaths
@@ -247,7 +250,8 @@ function Datasource() {
             jpeg: true,
             jpg: true,
             png: true,
-            gif: true
+            gif: true,
+            webp: true
         }
         const regx = new RegExp('^[a-zA-Z0-9()_.-]+$', 'g')
         const fn = input.split('.')
