@@ -552,14 +552,18 @@ export default {
             const target = '.navigator .sub-items .nav-item.box'
             this.requestRouteUpdate(this.selectedMain, this.selectedSub)
 
+            gsap.set($('.navigator .sub-items'), {
+                opacity: 0
+            })
+
             const afterBorderAnimation = () => {
-                gsap.to($('.navigator .sub-items'), 0, {
+                gsap.set($('.navigator .sub-items'), {
+                    delay: 0.05,
                     opacity: 1
                 })
-                const speed = 0.2
+                const speed = 0.2 // 0.2
                 const stagDelay = 0.05
-                gsap.from($(`.navigator ${target}.stag`), speed, {
-                    opacity: 0,
+                gsap.from($(`${target}.stag`), speed, {
                     y: 50,
                     ease: Expo.easeOut,
                     stagger: stagDelay,
@@ -569,7 +573,16 @@ export default {
                     }
                 })
 
-                gsap.from($(`.navigator ${target}.no-stag`), speed, {
+                gsap.set($(`${target}.stag`), {
+                    opacity: 0
+                })
+                gsap.to($(`${target}.stag`), speed * 4, {
+                    opacity: 1,
+                    ease: Expo.easeOut,
+                    stagger: stagDelay
+                })
+
+                gsap.from($(`${target}.no-stag`), speed, {
                     opacity: 0,
                     y: 50,
                     ease: Expo.easeOut,
@@ -589,9 +602,6 @@ export default {
                     .reduce((height, element) => height + $(element).outerHeight(true), 0)
 
                 let subHeight2 = parseInt($('.navigator .sub-items').height(), 10)
-
-                console.log('NAV:getSubHeightInfo .navigator .sub-items height = ', $('.navigator .sub-items').height())
-
                 return {
                     subHeight1,
                     subHeight2,
@@ -601,8 +611,6 @@ export default {
             }
 
             const subHeightInfo = getSubHeightInfo()
-
-            console.log('NAV:animateSub subHeightInfo = ', subHeightInfo)
 
             let borderDownTarget = subHeightInfo.visibleSubHeight
 
@@ -631,6 +639,7 @@ export default {
                 )
             }
         },
+
 
         rebuildSubNavigation(opts = {}) {
             // TODO: If the submnue of the current mainKey is already open,
