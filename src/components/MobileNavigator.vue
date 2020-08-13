@@ -205,7 +205,7 @@ export default {
                     sub.selected = false
                 })
             })
-            if (this.items[keys[0]]) {
+            if (this.items[keys[0]] && this.items[keys[0]].sub[keys[1]]) {
                 this.items[keys[0]].sub[keys[1]].selected = true
             }
         },

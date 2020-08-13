@@ -185,8 +185,16 @@ function Datasource() {
                 // navigation
                 itemL2 = _.isPlainObject(itemL2) ? itemL2 : {}
                 itemL2.i18nKey = `nav.${keyL1}.sub.${keyL2}.label`
+                itemL2.mainNav = itemL2.mainNav !== false
                 itemL2.circleNav = itemL2.circleNav !== false
-                navigation[keyL1].sub[keyL2] = itemL2
+                // add to main navigation L2
+                if (itemL2.mainNav) {
+                    navigation[keyL1].sub[keyL2] = itemL2
+                }
+                // add to circle navigation L2
+                if (itemL2.circleNav) {
+                    config.circleNav.push(`/${keyL1}/${keyL2}`)
+                }
                 // router
                 mainRoute.children.push({
                     path: keyL2,
@@ -200,20 +208,25 @@ function Datasource() {
                         i18nKey: `nav.${keyL1}.sub.${keyL2}.label`
                     }
                 })
-                // circle navigation
-                itemL2.circleNav ? config.circleNav.push(`/${keyL1}/${keyL2}`) : null
-
                 const subRoute = _.last(mainRoute.children)
                 subRoute.children = []
 
                 _.each(itemL2.sub, (itemL3, keyL3) => {
-                    // navigation
-                    itemL3 = _.isPlainObject(itemL3) ? itemL3 : {}
-                    itemL3.i18nKey = `nav.${keyL1}.sub.${keyL2}.sub.${keyL3}.label`
-                    itemL3.circleNav = itemL3.circleNav !== false
-                    navigation[keyL1].sub[keyL2].sub[keyL3] = itemL3
-                    // router
                     if (keyL3 !== '__0') {
+                        // navigation
+                        itemL3 = _.isPlainObject(itemL3) ? itemL3 : {}
+                        itemL3.i18nKey = `nav.${keyL1}.sub.${keyL2}.sub.${keyL3}.label`
+                        itemL3.mainNav = itemL3.mainNav !== false
+                        itemL3.circleNav = itemL3.circleNav !== false
+                        // add to main navigation L3
+                        if (itemL3.mainNav) {
+                            navigation[keyL1].sub[keyL2].sub[keyL3] = itemL3
+                        }
+                        // add to circle navigation L3
+                        if (itemL3.circleNav) {
+                            config.circleNav.push(`/${keyL1}/${keyL2}/${keyL3}`)
+                        }
+                        // router
                         subRoute.children.push({
                             path: keyL3,
                             props: true,
@@ -227,9 +240,6 @@ function Datasource() {
                                 i18nKey: `nav.${keyL1}.sub.${keyL2}.sub.${keyL3}.label`
                             }
                         })
-
-                        // circle navigation
-                        itemL3.circleNav ? config.circleNav.push(`/${keyL1}/${keyL2}/${keyL3}`) : null
                     }
                 })
             })
