@@ -91,6 +91,8 @@ function Globals() {
 
     window.addEventListener('resize', onResize)
 
+    this.getDimensions = () => dimensions
+
     // ++++++++++++++++++++++++++++++++++++++++
     // +++++  helpaz you will love :-)
     // ++++++++++++++++++++++++++++++++++++++++

@@ -16,8 +16,21 @@ export default {
     data() {
         return {
             tx: 299,
-            logoShifted: true
+            logoShifted: true,
+            logoShiftPix: null,
+            logoLink: this.$t(`head.logoLink`)
         }
+    },
+    created() {
+        globals.eventBus.$on('windowResized', this.onWindowResized)
+    },
+    mounted() {
+        this.logoShiftPix = globals.getAttrFromCssContent('.head-navigation').logoShiftPix
+        globals.eventBus.$on('windowResized', this.onWindowResized)
+    },
+
+    beforeDetroy() {
+        globals.eventBus.$off('windowResized', this.onWindowResized)
     },
     computed: {
         right() {
@@ -31,8 +44,24 @@ export default {
         }
     },
     methods: {
+        onWindowResized(evt) {
+            this.logoShifted = true
+            if (evt.now.innerWidth > this.logoShiftPix) {
+                this.logoShifted = false
+            }
+        },
         toggleLogo() {
-            this.logoShifted = !this.logoShifted
+            const link = () => window.open(this.logoLink, '_blank')
+            const dim = globals.getDimensions()
+            if (dim.innerWidth <= this.logoShiftPix) {
+                if (!this.logoShifted) {
+                    link()
+                }
+                this.logoShifted = !this.logoShifted
+            } else {
+                this.logoShifted = false
+                link()
+            }
         }
     }
 }
@@ -40,6 +69,8 @@ export default {
 
 <style lang="scss">
 .head-navigation {
+    //
+    content: "{ 'logoShiftPix':530 }";
     //
     position: absolute;
     height: 24px;
@@ -54,7 +85,6 @@ export default {
     @media (max-width: 760px) {
         height: 48px;
     }
-
     a {
         color: #d5d5d5;
         text-decoration: none;
@@ -68,11 +98,13 @@ export default {
         margin-left: 10px;
         text-overflow: ellipsis;
         overflow: hidden;
-        width: calc(100vw - 200px);
-        max-width: 320px;
+        width: calc(100vw - 460px);
         white-space: nowrap;
-        &.logoShifted {
-            width: calc(100vw - 65px);
+        @media (max-width: 760px) {
+            width: calc(100vw - 190px);
+            &.logoShifted {
+                width: calc(100vw - 60px);
+            }
         }
     }
 
@@ -111,25 +143,25 @@ export default {
             height: 56px;
             background-color: #f9f9f1;
             border-radius: 0 0 0 10px;
-
+            cursor: pointer;
             // TODO see top
-            @media (max-width: 530px) {
-                right: unset;
+            @media (max-width: 760px) {
+                position: absolute;
+                float: unset;
+                right: 0px;
                 transform: scale(0.85);
                 transform-origin: right top;
-                cursor: pointer;
+            }
+            // TODO see top
+            @media (max-width: 530px) {
+                transform: scale(0.85);
+                transform-origin: right top;
                 margin-right: 0px;
                 transition: margin-right 200ms;
                 &.logoShifted {
                     margin-right: -100px;
                     transition: margin-right 200ms;
                 }
-            }
-            // TODO see top
-            @media (max-width: 760px) {
-                position: absolute;
-                float: unset;
-                right: 0px;
             }
             .image {
                 position: absolute;
