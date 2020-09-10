@@ -166,8 +166,8 @@ export default {
         .scroll-area {
             position: absolute;
             width: calc(100% - 40px);
-            height: calc(100vh - 170px);
-            max-height: 1000px;
+            height: calc(100vh - 160px);
+            max-height: 970px;
             margin: 20px;
             margin-left: 50px;
             left: 0px;
