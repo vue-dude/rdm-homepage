@@ -48,8 +48,7 @@ const device = deviceDetector.parse(navigator.userAgent)
 const browser = device.client.name.toUpperCase()
 import { SCALE, POS, POS_CORR, PATH_1, PATH_2 } from '@/js/AnimationData.js'
 
-const MAIN_DEFAULT = 'structure' // TODO make this dynamic
-const SUB_DEFAULT = 'overview' // TODO make this dynamic
+let MAIN_DEFAULT, SUB_DEFAULT
 
 export default {
     name: 'Navigator',
@@ -99,6 +98,9 @@ export default {
         }
     },
     created() {
+        const home = datasource.getConfig().home
+        MAIN_DEFAULT = home[0]
+        SUB_DEFAULT = home[1]
         globals.eventBus.$on('windowResized', this.updateMobileNavState)
     },
     mounted: function() {
@@ -160,8 +162,8 @@ export default {
         updateRouting(main, sub) {
             sub = sub || SUB_DEFAULT
             const route = {
-                path: `/${main}/${sub}`,
-                data: { triggeredBy: 'mobile-navigator' }
+                path: `/${main}/${sub}`//,
+                // data: { triggeredBy: 'mobile-navigator' }
             }
             this.$router.push(route.path).catch(err => null)
             this.$store.dispatch('setColorWord', main)

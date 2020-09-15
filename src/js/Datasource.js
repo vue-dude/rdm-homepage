@@ -32,6 +32,7 @@ function Datasource() {
         authConfirmApi: `${base.cms}auth-confirm`,
         ckEditor: 'lib/ckeditor/ckeditor.js',
         structure: null,
+        home: ['structure', 'startpage'],
         sessionTimeoutMsec: 10000,
         translations: {},
         setup: {},
@@ -118,6 +119,8 @@ function Datasource() {
         config.setup.scrollHintDelayMsec = _.isNumber(data.setup.scrollHintDelayMsec)
             ? data.setup.scrollHintDelayMsec
             : 1500
+
+        config.home = _.isArray(data.setup.home) ? data.setup.home : config.home
     }
 
     const getInitialData = () => {

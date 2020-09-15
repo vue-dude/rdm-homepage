@@ -232,8 +232,7 @@ const STEPS_DEFAULT = [...STP, ...STP, ...STP]
 STP = [POS.SPC_A, POS.SPC_B, POS.SPC_C, POS.SPC_D]
 const STEPS_SPECIAL = [...STP, ...STP, ...STP]
 
-const MAIN_DEFAULT = 'structure' // TODO make this dynamic
-const SUB_DEFAULT = 'overview' // TODO make this dynamic
+let MAIN_DEFAULT, SUB_DEFAULT
 
 export default {
     name: 'Navigator',
@@ -280,6 +279,9 @@ export default {
         }
     },
     created() {
+        const home = datasource.getConfig().home
+        MAIN_DEFAULT = home[0]
+        SUB_DEFAULT = home[1]
         this.suspendItem = {
             hoverEnabled: true,
             i18nKey: null,
@@ -639,7 +641,6 @@ export default {
                 )
             }
         },
-
 
         rebuildSubNavigation(opts = {}) {
             // TODO: If the submnue of the current mainKey is already open,
@@ -1055,7 +1056,8 @@ export default {
     }
 
     .paths {
-        width: 400px;
+        // width: 400px;
+        width: unset;
         height: 420px;
         opacity: 0.4;
         position: absolute;

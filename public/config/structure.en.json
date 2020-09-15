@@ -5,7 +5,8 @@
         "scrollHintDelayMsec": 5000,
         "translations": {
             "en": {}
-        }
+        },
+        "home": ["structure", "startpage"]
     },
     "router": [
         {
@@ -23,8 +24,9 @@
     "structure": {
         "structure": {
             "sub": {
-                "intro": {},
+                "startpage": {},
                 "website": {},
+                "intro": {},
                 "contact": {}
             }
         },
@@ -34,15 +36,11 @@
                 "dataManagementPlans": {},
                 "legalAndEthical": {},
                 "fileHandling": {},
-                "fileFormats": {
-                    "sub": {
-                        "__0": {},
-                        "subPdf": {},
-                        "subJpeg": {}
-                    }
-                },
-                "sustainabilityFactors": {},
-                "pdfFormat": {}
+                "fileFormats": {},
+                "pdfFormat": {
+                    "mainNav": false,
+                    "circleNav": false
+                }
             }
         },
         "running": {

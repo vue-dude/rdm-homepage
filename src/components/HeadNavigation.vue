@@ -1,6 +1,6 @@
 <template>
     <div class="head-navigation">
-        <div class="left" :class="{ logoShifted }" v-html="$t('head.title')"></div>
+        <div class="left" :class="{ logoShifted }" @click="onClickHeadline" v-html="$t('head.title')"></div>
         <div class="right">
             <div class="logo" @click="toggleLogo" :class="{ logoShifted }">
                 <div class="image"></div>
@@ -44,6 +44,12 @@ export default {
         }
     },
     methods: {
+        onClickHeadline() {
+            const home = datasource.getConfig().home
+            const path = `/${home[0]}/${home[1]}`
+            this.$router.push(path).catch(err => null)
+            this.$store.dispatch('setColorWord', home[0])
+        },
         onWindowResized(evt) {
             this.logoShifted = true
             if (evt.now.innerWidth > this.logoShiftPix) {
@@ -100,6 +106,7 @@ export default {
         overflow: hidden;
         width: calc(100vw - 460px);
         white-space: nowrap;
+        cursor: pointer;
         @media (max-width: 760px) {
             width: calc(100vw - 190px);
             &.logoShifted {
