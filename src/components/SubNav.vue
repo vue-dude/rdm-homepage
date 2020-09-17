@@ -6,7 +6,7 @@
         <div
             class="inner"
             :class="{ clickable: canOpenMobileNav }"
-            @click="canOpenMobileNav ? $emit('clickPath') : null"
+            @click="canOpenMobileNav ? $emit('click-path') : null"
         >
             <div class="path" :class="{ show: showPath }">
                 <div>{{ path.main }}</div>

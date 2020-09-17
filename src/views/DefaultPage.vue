@@ -4,7 +4,7 @@
             <Navigator :config="navigation" :uKey="uKey" />
             <div class="content-container">
                 <Content :config="content" :class="{ opacity0: mobynav && canShowMobileNav }" :key="uKey"></Content>
-                <SubNav class="sub-nav" :config="{}" @clickPath="onSubNavClickPath" />
+                <SubNav class="sub-nav" :config="{}" @click-path="onSubNavClickPath" />
             </div>
             <MobileNavigator
                 :config="navigation"
