@@ -113,15 +113,12 @@ export default {
         }
     },
     watch: {
-        'window.CKEDITOR'(now) {
-            console.log('DP:watch window.CKEDITOR = ', now)
-        },
+        // 'window.CKEDITOR'(now) {
+        //     console.log('DP:watch window.CKEDITOR = ', now)
+        // },
         $route(to, from) {
-            console.log('DP:watch route to, from = ', to, from)
-
             setTimeout(() => {
                 this.mobynav = false
-                console.log('DP:watch route this.mobynav= ', this.mobynav)
             }, 200)
         }
     }

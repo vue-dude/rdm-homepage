@@ -18,7 +18,6 @@ const store = new Vuex.Store({
         },
         setColorWord(context, world) {
             this.state.colorWorld = globals.isColorWorld(world) ? world : 'default'
-            console.log('STORE:setColorWord this.state.colorWorld = ', this.state.colorWorld)
         }
     }
 })

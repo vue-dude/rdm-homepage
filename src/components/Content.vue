@@ -121,14 +121,9 @@ export default {
             globals.initCkInstance(this.i18nKey)
         },
         onRouteWillChange(args) {
-            console.log('CT:onRouteWillChange args = ', args)
-            console.log('CT:onRouteWillChange this.mainKey = ', this.mainKey)
-            console.log('CT:onRouteWillChange this.subKey = ', this.subKey)
             if (args.mainKey !== this.mainKey || args.subKey !== this.subKey) {
                 this.mainKey = args.mainKey
                 this.subKey = args.subKey
-                console.log('CT:onRouteWillChange AF this.mainKey = ', this.mainKey)
-                console.log('CT:onRouteWillChange AF this.subKey = ', this.subKey)
                 clearTimeout(this.showTimeout)
                 this.showContent = false
                 if (args.subKey) {
