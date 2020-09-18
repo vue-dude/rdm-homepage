@@ -211,8 +211,8 @@ export default {
                             .inner {
                                 position: absolute;
                                 margin: 4px;
-                                margin-left: 10px;
-                                width: calc(100% - 100px);
+                                margin-left: 50px;
+                                width: calc(100% - 130px);
                                 .path {
                                     display: flex;
                                     min-height: 30px;

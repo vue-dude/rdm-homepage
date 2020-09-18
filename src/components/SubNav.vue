@@ -3,6 +3,11 @@
         <div class="main hidden" v-html="$t(routePathList[0])"></div>
         <div class="sub hidden" v-html="$t(routePathList[1])"></div>
         <div class="level3 hidden" v-html="$t(routePathList[2])"></div>
+        <div class="home" @click="canOpenMobileNav ? $emit('click-path') : null">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
         <div
             class="inner"
             :class="{ clickable: canOpenMobileNav }"
@@ -117,7 +122,6 @@ export default {
                 txt = txt.split('\n').join(' ')
                 txt.trim()
                 this.path.level3 = txt
-
             }, 150)
             //
             return res
@@ -140,6 +144,22 @@ export default {
     color: #ffffff;
     background-image: linear-gradient(to top, rgba(180, 248, 255, 0.45), rgba(189, 221, 230, 0.78));
     //
+    .home {
+        margin-top: 15px;
+        margin-left: 12px;
+        float: left;
+        cursor: pointer;
+        display: none;
+        @media (max-width: 760px) {
+            display: inline;
+        }
+        .burger-line {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 6px 0;
+        }
+    }
     .inner {
         overflow: hidden;
         position: absolute;
