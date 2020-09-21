@@ -1,6 +1,12 @@
 <template>
     <div class="mobile-navigator">
-        <vue-custom-scrollbar ref="scrollarea" class="scroll-area" scrollYMarginOffset="20px" :settings="scrConfig">
+        <vue-custom-scrollbar
+            ref="scrollarea"
+            class="scroll-area"
+            :class="[$store.state.device.class]"
+            scrollYMarginOffset="20px"
+            :settings="scrConfig"
+        >
             <div class="box-container color-worlds background">
                 <div class="world-box" v-for="(item, key) in items" :class="key" :key="key">
                     <div class="bg" :class="key" @click="onClickItem({ mainKey: null })"></div>
@@ -162,7 +168,7 @@ export default {
         updateRouting(main, sub) {
             sub = sub || SUB_DEFAULT
             const route = {
-                path: `/${main}/${sub}`//,
+                path: `/${main}/${sub}` //,
                 // data: { triggeredBy: 'mobile-navigator' }
             }
             this.$router.push(route.path).catch(err => null)
@@ -280,12 +286,19 @@ export default {
         overflow: unset;
     }
     .scroll-area {
-        height: calc(100vh - 130px);
-        max-height: 530px;
+        // max-height: 530px;
         width: calc(100vw - 20px);
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
+        --dy: 0px;
+        &.i-phone-x {
+            --dy: 100px;
+        }
+        &.m-pad {
+            --dy: 20px;
+        }
+        height: calc(100vh - 130px - var(--dy));
         ::v-deep {
             &::-webkit-scrollbar {
                 display: none;

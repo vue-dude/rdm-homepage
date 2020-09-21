@@ -5,9 +5,14 @@
                 <div class="scroll-handler load-style" :class="key"></div>
             </div>
         </div>
-        <div class="layers">
-            <div class="bg" :class="$store.state.colorWorld"></div>
-            <vue-custom-scrollbar ref="scrollarea" class="scroll-area" :settings="scrConfig" scrollYMarginOffset="20px">
+        <div class="layers" :class="[$store.state.device.class]">
+            <div class="bg" :class="[$store.state.colorWorld]"></div>
+            <vue-custom-scrollbar
+                ref="scrollarea"
+                class="scroll-area"
+                :settings="scrConfig"
+                scrollYMarginOffset="20px"
+            >
                 <div
                     @focus="onFocus"
                     :contenteditable="cmsEnabled"
@@ -48,6 +53,7 @@ export default {
             initializing: true,
             styles: {},
             colorWorld: this.$store.state.colorWorld
+            // device: 'i-pad-pro' // i-phone-x
         }
     },
     created() {

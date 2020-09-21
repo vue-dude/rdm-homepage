@@ -16,6 +16,7 @@
 import Background from '@/components/Background'
 import HeadNavigation from '@/components/HeadNavigation'
 import Preloader from '@/components/Preloader'
+import DeviceDetector from '@/js/DeviceDetector'
 
 export default {
     name: 'App',
@@ -23,6 +24,20 @@ export default {
         Background,
         HeadNavigation,
         Preloader
+    },
+    created() {
+        globals.eventBus.$on('windowResized', this.onWindowResized)
+        this.updateDevice()
+    },
+    methods: {
+        onWindowResized(evt) {
+            this.updateDevice()
+        },
+        updateDevice() {
+            const device = new DeviceDetector(window).getDevice()
+            console.log('APP:updateDevice device = ',device)
+            this.$store.dispatch('setDevice', device)
+        }
     }
 }
 </script>

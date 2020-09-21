@@ -7,7 +7,10 @@ const store = new Vuex.Store({
     state: {
         preloadActive: false,
         currentLoadingItemName: null,
-        colorWorld: 'initial'
+        colorWorld: 'initial',
+        device: {
+            // class: 'i-phone-x'
+        }
     },
     actions: {
         setPreloadActiveState(context, yes) {
@@ -18,6 +21,9 @@ const store = new Vuex.Store({
         },
         setColorWord(context, world) {
             this.state.colorWorld = globals.isColorWorld(world) ? world : 'default'
+        },
+        setDevice(context, device) {
+            this.state.device = device || {}
         }
     }
 })

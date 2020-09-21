@@ -96,7 +96,7 @@ export default {
             this.cmsDialog.id = null
         },
         onSubNavClickPath(evt) {
-            this.mobynav = this.canShowMobileNav
+            this.mobynav = this.mobynav ? false : this.canShowMobileNav
         },
         onMobyNavClickItem(evt) {
             if (!evt.mainKey) {
@@ -171,6 +171,25 @@ export default {
                 margin-left: 5px;
                 width: calc(100% + 0px);
             }
+            // special device height adaptions
+            ::v-deep {
+                .content .layers {
+                    --dy: 0px;
+                    &.i-phone-x {
+                        --dy1: 306px;
+                        --dy: 100px;
+                    }
+                    &.m-pad {
+                        --dy: 20px;
+                    }
+                    .scroll-area {
+                        height: calc(100vh - 160px - var(--dy));
+                    }
+                    .bg {
+                        height: calc(100vh - 130px - var(--dy));
+                    }
+                }
+            }
         }
     }
     @media (max-width: 760px) {
@@ -189,19 +208,6 @@ export default {
                     top: 60px;
                     left: 10px;
                     width: calc(100vw - 32px);
-                    ::v-deep {
-                        .content .layers {
-                            .scroll-area {
-                                // iPhone X
-                                max-height: 490px;
-                                margin-left: 20px;
-                                width: calc(100% + 2px);
-                            }
-                            .bg {
-                                max-height: 530px;
-                            }
-                        }
-                    }
                     .sub-nav {
                         height: 53px;
                         margin-top: -12px;

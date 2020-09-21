@@ -200,6 +200,60 @@ function Globals() {
     })
 
     // ++++++++++++++++++++++++++++++++++++++++
+    // +++++ key input tracking
+    // ++++++++++++++++++++++++++++++++++++++++
+
+    const keyDownTargets = {
+        startCms: () => null,
+        showDevice: () => null
+    }
+
+    document.onkeydown = e => {
+        keyDownTargets.startCms(e)
+        keyDownTargets.showDevice(e)
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++
+    // +++++ showDevice
+    // ++++++++++++++++++++++++++++++++++++++++
+
+    let deviceTme = null
+
+    const delayedDeviceInfo = () => {
+        clearTimeout(deviceTme)
+        deviceTme = setTimeout(showDeviceInfo, 3000)
+    }
+
+    document.addEventListener('touchstart', delayedDeviceInfo())
+    document.addEventListener('touchend', () => clearTimeout(deviceTme))
+
+    let keyQueue = []
+
+    const showDeviceInfo = () => {
+        document.removeEventListener('mouseup', showDeviceInfo)
+        const device = this.getStore().state.device
+        window.alert(JSON.stringify(device))
+    }
+
+    keyDownTargets.showDevice = e => {
+        const char = e.key.toLocaleUpperCase()
+        // const track = 'D,V,X'.split(',')
+        const track = 'D'.split(',')
+        const index = track.indexOf(char)
+        if (char === track[index]) {
+            keyQueue.push(char)
+            // if (keyQueue.join('') === 'DVX') {
+            if (keyQueue.join('') === 'D') {
+                document.addEventListener('mouseup', showDeviceInfo)
+                keyQueue = []
+            }
+        } else {
+            keyQueue = []
+            document.removeEventListener('mouseup', showDeviceInfo)
+        }
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++
     // +++++ CMS handling
     // ++++++++++++++++++++++++++++++++++++++++
 
@@ -263,7 +317,7 @@ function Globals() {
         }
         if (DEV_MODE) {
             const auth = () => requestAuthentication()
-            document.onkeydown = e => {
+            keyDownTargets.startCms = e => {
                 if (e.key) {
                     if (e.key.toLocaleUpperCase() === 'A') {
                         document.addEventListener('mouseup', auth)
