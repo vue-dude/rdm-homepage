@@ -1,8 +1,8 @@
 <template>
-    <div class="default-view mobile">
-        <div class="views">
+    <div class="default-view">
+        <div class="views" :class="[$store.state.mediaTag]">
             <Navigator :config="navigation" :uKey="uKey" />
-            <div class="content-container">
+            <div class="content-container" :class="[$store.state.mediaTag]">
                 <Content :config="content" :class="{ opacity0: mobynav && canShowMobileNav }" :key="uKey"></Content>
                 <SubNav class="sub-nav" :config="{}" @click-path="onSubNavClickPath" />
             </div>
@@ -69,7 +69,7 @@ export default {
             this.uKey = this.uKey > 1000 ? 1 : ++this.uKey
         },
         updateMobileNavState() {
-            this.canShowMobileNav = $(window).width() < globals.MOBILE_NAV_SWITCH
+            this.canShowMobileNav = this.$store.state.mediaTag
             this.mobynav = this.canShowMobileNav ? this.mobynav : false
         },
         onWindowResized(data) {
@@ -158,90 +158,59 @@ export default {
             position: relative;
             top: 70px;
             left: 30px;
-            width: calc(100vw - 500px);
-            max-width: 800px;
-            @media (max-width: 940px) {
-                // min-width: calc(100vw - 340px);
-                min-width: unset;
-                max-width: unset;
-                width: calc(100vw - 336px);
-            }
             .sub-nav {
                 margin-top: 5px;
                 margin-left: 5px;
                 width: calc(100% + 0px);
             }
-            // special device height adaptions
-            ::v-deep {
-                .content .layers {
-                    --dy: 0px;
-                    &.i-phone-x {
-                        --dy1: 306px;
-                        --dy: 100px;
-                    }
-                    &.m-pad {
-                        --dy: 20px;
-                    }
-                    .scroll-area {
-                        height: calc(100vh - 160px - var(--dy));
-                    }
-                    .bg {
-                        height: calc(100vh - 130px - var(--dy));
-                    }
-                }
-            }
         }
     }
-    @media (max-width: 760px) {
-        &.mobile {
-            .views {
-                display: inline;
-                .navigator {
-                    width: 0;
-                    height: 0;
-                    // display: none;
-                    visibility: hidden;
-                    overflow: hidden;
-                }
-                .content-container {
-                    position: absolute;
-                    top: 60px;
-                    left: 10px;
-                    width: calc(100vw - 32px);
-                    .sub-nav {
-                        height: 53px;
-                        margin-top: -12px;
-                        margin-left: 0px;
-                        width: calc(100% + 12px);
-                        ::v-deep {
-                            .inner {
-                                position: absolute;
-                                margin: 4px;
-                                margin-left: 50px;
-                                width: calc(100% - 130px);
-                                .path {
-                                    display: flex;
-                                    min-height: 30px;
-                                    margin-top: 20px;
-                                    width: 100%;
-                                    div {
-                                        text-overflow: ellipsis;
-                                        overflow: hidden;
-                                        white-space: nowrap;
-                                        max-width: 40ch;
-                                        //
-                                        font-size: 16px;
-                                        line-height: 16px;
-                                        height: 30px;
-                                        &.sp {
-                                            margin-left: 6px;
-                                            margin-right: 6px;
-                                            width: 8px;
-                                        }
-                                        @media (max-width: 550px) {
-                                            max-width: 22ch;
-                                        }
-                                    }
+    .views.media-width-768 {
+        display: inline;
+        .navigator {
+            width: 0;
+            height: 0;
+            // display: none;
+            visibility: hidden;
+            overflow: hidden;
+        }
+        .content-container {
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            width: calc(100vw - 32px);
+            .sub-nav {
+                height: 53px;
+                margin-top: -12px;
+                margin-left: 0px;
+                width: calc(100% + 12px);
+                ::v-deep {
+                    .inner {
+                        position: absolute;
+                        margin: 4px;
+                        margin-left: 50px;
+                        width: calc(100% - 130px);
+                        .path {
+                            display: flex;
+                            min-height: 30px;
+                            margin-top: 16px;
+                            width: 100%;
+                            div {
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                max-width: 40ch;
+                                //
+                                font-size: 16px;
+                                line-height: 16px;
+                                height: 30px;
+                                &.sp {
+                                    margin-left: 6px;
+                                    margin-right: 6px;
+                                    width: 8px;
+                                }
+                                @media (max-width: 550px) {
+                                    max-width: 22ch;
                                 }
                             }
                         }

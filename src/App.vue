@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :key="$store.state.rKey">
         <div class="hidden">
             <div contenteditable="true" id="ck-init"></div>
         </div>
@@ -27,7 +27,27 @@ export default {
     },
     created() {
         globals.eventBus.$on('windowResized', this.onWindowResized)
+
+        window.onorientationchange = () => {
+            // window.addEventListener('orientationchange', () => {
+            this.updateDevice()
+            // this.$router.go(null)
+            // window.location = ''
+            // setTimeout(() => {
+            //     // window.location = window.location
+            //     // this.$router.go('/')
+            //     // window.location.reload
+            //     // this.$router.go('/')
+            //     // this.$store.dispatch('orientationChanged')
+            // }, 4000)
+        } //)
         this.updateDevice()
+    },
+    mounted() {
+        this.updateDevice()
+        setTimeout(() => {
+            this.updateDevice()
+        }, 2000)
     },
     methods: {
         onWindowResized(evt) {
@@ -35,7 +55,7 @@ export default {
         },
         updateDevice() {
             const device = new DeviceDetector(window).getDevice()
-            console.log('APP:updateDevice device = ',device)
+            console.log('APP:updateDevice device = ', device)
             this.$store.dispatch('setDevice', device)
         }
     }

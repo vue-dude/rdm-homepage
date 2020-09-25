@@ -9,8 +9,10 @@ const store = new Vuex.Store({
         currentLoadingItemName: null,
         colorWorld: 'initial',
         device: {
-            // class: 'i-phone-x'
-        }
+            // classes 'e.g. sc-h1120 sc-w1792 rt2 firefox portrait'
+        },
+        mediaTag: '', // media-width-768
+        rKey: 0
     },
     actions: {
         setPreloadActiveState(context, yes) {
@@ -24,6 +26,19 @@ const store = new Vuex.Store({
         },
         setDevice(context, device) {
             this.state.device = device || {}
+            this.state.mediaTag = ''
+            const vp = device.viewport
+            const width = vp.width < vp.innerWidth ? vp.width: vp.innerWidth
+            if (width <= 769) {
+                this.state.mediaTag = 'media-width-768'
+            }
+            // TODO add force mediaTag 768 on largr devices, e.g. edge
+        },
+        orientationChanged(context) {
+            this.state.rKey++
+            if (this.state.rKey > 1000) {
+                this.state.rKey = 0
+            }
         }
     }
 })

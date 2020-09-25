@@ -1,11 +1,15 @@
 <template>
-    <div class="head-navigation">
-        <div class="left" :class="{ logoShifted }" @click="onClickHeadline" v-html="$t('head.title')"></div>
+    <div class="head-navigation" :class="[$store.state.mediaTag]">
+        <div
+            class="left" :class="[logoShifted, $store.state.mediaTag]"
+            @click="onClickHeadline"
+            v-html="$t('head.title')"
+        ></div>
         <div class="right">
-            <div class="logo" @click="toggleLogo" :class="{ logoShifted }">
+            <div class="logo" :class="[logoShifted, $store.state.mediaTag]" @click="toggleLogo">
                 <div class="image"></div>
             </div>
-            <div class="legal" :class="{ logoShifted }" v-html="right"></div>
+            <div class="legal" :class="[logoShifted, $store.state.mediaTag]" v-html="right"></div>
         </div>
     </div>
 </template>
@@ -88,7 +92,8 @@ export default {
     background-color: #1c4566;
     color: #7fa8b8;
     // TODO make this centralized and dynamic, due to length of translated texts!
-    @media (max-width: 760px) {
+    // @media (max-width: 769px) {
+    &.media-width-768 {
         height: 48px;
     }
     a {
@@ -107,7 +112,8 @@ export default {
         width: calc(100vw - 460px);
         white-space: nowrap;
         cursor: pointer;
-        @media (max-width: 760px) {
+        // @media (max-width: 769px) {
+        &.media-width-768 {
             width: calc(100vw - 190px);
             &.logoShifted {
                 width: calc(100vw - 60px);
@@ -125,7 +131,8 @@ export default {
             padding-right: 5px;
             border-radius: 5px;
             // TODO see top
-            @media (max-width: 760px) {
+            // @media (max-width: 769px) {
+            &.media-width-768 {
                 position: absolute;
                 display: flex;
                 left: 10px;
@@ -152,7 +159,8 @@ export default {
             border-radius: 0 0 0 10px;
             cursor: pointer;
             // TODO see top
-            @media (max-width: 760px) {
+            &.media-width-768 {
+                // @media (max-width: 769px) {
                 position: absolute;
                 float: unset;
                 right: 0px;

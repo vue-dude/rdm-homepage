@@ -217,16 +217,6 @@ function Globals() {
     // +++++ showDevice
     // ++++++++++++++++++++++++++++++++++++++++
 
-    let deviceTme = null
-
-    const delayedDeviceInfo = () => {
-        clearTimeout(deviceTme)
-        deviceTme = setTimeout(showDeviceInfo, 3000)
-    }
-
-    document.addEventListener('touchstart', delayedDeviceInfo())
-    document.addEventListener('touchend', () => clearTimeout(deviceTme))
-
     let keyQueue = []
 
     const showDeviceInfo = () => {
@@ -234,16 +224,19 @@ function Globals() {
         const device = this.getStore().state.device
         window.alert(JSON.stringify(device))
     }
+    this.showDeviceInfoDelayed = () => {
+        setTimeout(showDeviceInfo, 3000)
+    }
 
     keyDownTargets.showDevice = e => {
-        const char = e.key.toLocaleUpperCase()
+        const char = e.key ? e.key.toLocaleUpperCase() : null
         // const track = 'D,V,X'.split(',')
         const track = 'D'.split(',')
         const index = track.indexOf(char)
         if (char === track[index]) {
             keyQueue.push(char)
             // if (keyQueue.join('') === 'DVX') {
-            if (keyQueue.join('') === 'D') {
+                if (keyQueue.join('') === 'D') {
                 document.addEventListener('mouseup', showDeviceInfo)
                 keyQueue = []
             }

@@ -13,12 +13,6 @@
             "path": "*",
             "redirect": "/structure",
             "children": "structure"
-        },
-        {
-            "path": "/admin",
-            "meta": {
-                "admin": true
-            }
         }
     ],
     "structure": {

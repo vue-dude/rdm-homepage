@@ -5,7 +5,7 @@
                 <div class="scroll-handler load-style" :class="key"></div>
             </div>
         </div>
-        <div class="layers" :class="[$store.state.device.class]">
+        <div class="layers" :class="[$store.state.device.classes]">
             <div class="bg" :class="[$store.state.colorWorld]"></div>
             <vue-custom-scrollbar
                 ref="scrollarea"
@@ -167,8 +167,8 @@ export default {
         .scroll-area {
             position: absolute;
             width: calc(100% - 40px);
-            height: calc(100vh - 160px);
-            max-height: 970px;
+            // height: calc(100vh - 160px);
+            // max-height: 970px;
             margin: 20px;
             margin-left: 50px;
             left: 0px;
@@ -216,8 +216,8 @@ export default {
         }
         .bg {
             width: calc(100% + 12px);
-            height: calc(100vh - 130px);
-            max-height: 1000px;
+            // height: calc(100vh - 130px); // moved to device setup in rdm.scss
+            // max-height: 1000px;
             left: 0px;
             top: 0px;
             background-color: white;

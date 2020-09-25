@@ -1,9 +1,15 @@
 import BaseDetector from 'device-detector-js'
+import { detect } from 'detect-browser'
+const browser = detect()
+
+console.log('obj:fc browser = ', browser)
 
 function DeviceDetector() {
     const bd = new BaseDetector()
-    const base = bd.parse(navigator.userAgent)
-    const device = { ...base, class: '' }
+    let ua = navigator.userAgent
+    const base = bd.parse(ua)
+    // !! base dont delivers 100% relialable values, so firefox IOS is detected as safari ...
+    const device = { ...base, classes: [], __browser: $.browser }
     device.viewport = {
         width: window.screen.width,
         height: window.screen.height,
@@ -13,25 +19,71 @@ function DeviceDetector() {
         landscape: window.innerWidth >= window.innerHeight,
         touch: bd.isToucheEnabled(navigator.userAgent)
     }
+    ua = ua.toLowerCase()
+    device.raw = ua
+
+    const classes = {
+        opera: 'opera',
+        ios: 'ios',
+        android: 'android'
+    }
+
+    let brw = device.client.name.toLowerCase()
+    switch (true) {
+        // detect firefox first, as there is NO firefox-like string in the user agent! :-)
+        case ua.includes('gecko') && ua.includes('mozilla/5.0'):
+            brw = 'firefox'
+            break
+        case brw.includes('safari'):
+            brw = 'safari'
+            break
+        case brw.includes('chrome'):
+            brw = 'chrome'
+            break
+        case brw.includes('opera'):
+            brw = 'opera'
+            break
+        default:
+            brw = ''
+    }
+
+    const getClass = name => {
+        return classes[name.toLowerCase()] || ''
+    }
+
+    // classes: sh234 sw234 ios safari
 
     const vp = device.viewport
+    const cls = []
 
-    if (vp.pixelRatio === 2) {
-        if (vp.width === 834 && vp.height === 1194) {
-            device.class = 'm-pad'
-        }
-    }
+    // cls.push('device')
+    cls.push(`sc-h${vp.height}`)
+    cls.push(`sc-w${vp.width}`)
+    cls.push(`rt${vp.pixelRatio}`)
+    // cls.push(brw)
+    cls.push(getClass(device.os.name))
+    cls.push(device.viewport.landscape ? 'landscape' : 'portrait')
 
-    if (vp.pixelRatio === 3) {
-        if (vp.width === 375 && vp.height === 812) {
-            device.class = 'i-phone-x'
-        }
-    }
+    
+
+    // if (vp.pixelRatio === 2) {
+    //     if (vp.width === 834 && vp.height === 1194) {
+    //         device.classes = 'm-pad'
+    //     }
+    // }
+
+    // if (vp.pixelRatio === 3) {
+    //     if (vp.width === 375 && vp.height === 812) {
+    //         device.classes = 'i-phone-x'
+    //     }
+    // }
 
     // override until trustful dtection is complete:
     if (device.viewport.innerWidth < 760) {
-        device.class = 'i-phone-x'
+        // device.classes = 'i-phone-x'
     }
+
+    device.classes = cls.join(' ')
 
     console.log('DD: device = ', device)
 
@@ -41,6 +93,7 @@ function DeviceDetector() {
     // const bd = new BaseDetector()
     // console.log('DD: bd.isToucheEnabled() = ',bd.isToucheEnabled(navigator.userAgent))
     // console.log('DD: bd.isDesktop() = ',bd.isDesktop())
+
     this.getDevice = () => device
 }
 

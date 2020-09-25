@@ -130,20 +130,26 @@ const createDynamicConfig = config => {
             path: '/admin',
             beforeEnter: (to, from, next) => {
                 globals.touchedAdmin()
-                setTimeout(() => next('/'), 100)
+                // setTimeout(() => next('/'), 100)
+                setTimeout(() => next(from), 100)
             }
         },
         {
             path: '/auth-confirm/:token',
             beforeEnter: (to, from, next) => {
-                console.log('obj:fc to = ',to)
                 const token = to.path.split('/').pop()
                 datasource.authenticationConfirm(token)
                 setTimeout(() => next('/'), 100)
             }
+        },
+        {
+            path: '/area51',
+            beforeEnter: (to, from, next) => {
+                globals.showDeviceInfoDelayed()
+                setTimeout(() => next(from), 100)
+            }
         }
     )
-
     console.log('RT:createDynamicConfig routes root = ', root)
     return root
 }

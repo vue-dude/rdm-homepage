@@ -3,7 +3,7 @@
         <div class="main hidden" v-html="$t(routePathList[0])"></div>
         <div class="sub hidden" v-html="$t(routePathList[1])"></div>
         <div class="level3 hidden" v-html="$t(routePathList[2])"></div>
-        <div class="home" @click="canOpenMobileNav ? $emit('click-path') : null">
+        <div class="home" :class="[$store.state.mediaTag]" @click="canOpenMobileNav ? $emit('click-path') : null">
             <div class="burger-line"></div>
             <div class="burger-line"></div>
             <div class="burger-line"></div>
@@ -21,7 +21,7 @@
                 <div>{{ path.level3 }}</div>
             </div>
         </div>
-        <div class="nav">
+        <div class="nav" :class="[$store.state.mediaTag]">
             <div class="bt" @click="goPrev">
                 <div class="circle"></div>
                 <div class="arrow">&#8249;</div>
@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         updateMobileNavState() {
-            this.canOpenMobileNav = $(window).width() < globals.MOBILE_NAV_SWITCH
+            this.canOpenMobileNav = this.$store.state.mediaTag
         },
         onRouteWillChange(args) {
             // TODO may needs update for level 3 !
@@ -145,12 +145,13 @@ export default {
     background-image: linear-gradient(to top, rgba(180, 248, 255, 0.45), rgba(189, 221, 230, 0.78));
     //
     .home {
-        margin-top: 15px;
+        margin-top: 10px;
         margin-left: 12px;
         float: left;
         cursor: pointer;
         display: none;
-        @media (max-width: 760px) {
+        // @media (max-width: 769px) {
+        &.media-width-768 {
             display: inline;
         }
         .burger-line {
@@ -219,8 +220,9 @@ export default {
                 cursor: pointer;
             }
         }
-        @media (max-width: 760px) {
-            margin-top: 16px;
+        // @media (max-width: 769px) {
+        &.media-width-768 {
+            margin-top: 12px;
             .bt {
                 margin-left: 4px;
                 .circle {

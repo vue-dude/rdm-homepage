@@ -3,7 +3,7 @@
         <vue-custom-scrollbar
             ref="scrollarea"
             class="scroll-area"
-            :class="[$store.state.device.class]"
+            :class="[$store.state.mediaTag, $store.state.device.classes]"
             scrollYMarginOffset="20px"
             :settings="scrConfig"
         >
@@ -286,19 +286,9 @@ export default {
         overflow: unset;
     }
     .scroll-area {
-        // max-height: 530px;
-        width: calc(100vw - 20px);
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
-        --dy: 0px;
-        &.i-phone-x {
-            --dy: 100px;
-        }
-        &.m-pad {
-            --dy: 20px;
-        }
-        height: calc(100vh - 130px - var(--dy));
         ::v-deep {
             &::-webkit-scrollbar {
                 display: none;
