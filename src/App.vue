@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :key="$store.state.rKey">
+    <div id="app">
         <div class="hidden">
             <div contenteditable="true" id="ck-init"></div>
         </div>
@@ -25,29 +25,32 @@ export default {
         HeadNavigation,
         Preloader
     },
+    data() {
+        return {
+            itvl: null,
+            itvlCnt: 0
+        }
+    },
     created() {
+        // TODO move this into the device control class
         globals.eventBus.$on('windowResized', this.onWindowResized)
-
         window.onorientationchange = () => {
-            // window.addEventListener('orientationchange', () => {
             this.updateDevice()
-            // this.$router.go(null)
-            // window.location = ''
-            // setTimeout(() => {
-            //     // window.location = window.location
-            //     // this.$router.go('/')
-            //     // window.location.reload
-            //     // this.$router.go('/')
-            //     // this.$store.dispatch('orientationChanged')
-            // }, 4000)
-        } //)
-        this.updateDevice()
+            this.itvlCnt = 5
+            clearInterval(this.itvl)
+            this.itvl = setInterval(() => {
+                this.updateDevice()
+                if (--itvlCnt < 1) {
+                    clearInterval(this.itvl)
+                }
+            }, 2000)
+        }
     },
     mounted() {
         this.updateDevice()
         setTimeout(() => {
-            this.updateDevice()
-        }, 2000)
+            this.updateAppHeight(this.$store.state.innerHeight)
+        }, 100)
     },
     methods: {
         onWindowResized(evt) {
@@ -57,6 +60,18 @@ export default {
             const device = new DeviceDetector(window).getDevice()
             console.log('APP:updateDevice device = ', device)
             this.$store.dispatch('setDevice', device)
+        },
+        updateAppHeight(height) {
+            const yOffset = this.$store.state.isMobile ? 100 : 150
+            const dy = this.$store.state.isMobile ? 50 : 30
+            $('.default-view .content-container .content .layers .scroll-area').height(height - yOffset - dy)
+            $('.default-view .content-container .content .layers .bg').height(height - yOffset - dy + 30)
+            $('.default-view .mobile-navigator .scroll-area').height(height - yOffset - dy + 30)
+        }
+    },
+    watch: {
+        '$store.state.innerHeight'(height) {
+            this.updateAppHeight(height)
         }
     }
 }

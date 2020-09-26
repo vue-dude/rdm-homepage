@@ -3,14 +3,14 @@
         <div class="views" :class="[$store.state.mediaTag]">
             <Navigator :config="navigation" :uKey="uKey" />
             <div class="content-container" :class="[$store.state.mediaTag]">
-                <Content :config="content" :class="{ opacity0: mobynav && canShowMobileNav }" :key="uKey"></Content>
+                <Content :config="content" :class="{ opacity0: mobynav && isMobile }" :key="uKey"></Content>
                 <SubNav class="sub-nav" :config="{}" @click-path="onSubNavClickPath" />
             </div>
             <MobileNavigator
                 :config="navigation"
                 :uKey="uKey"
                 :class="{ opacity0: !mobynav }"
-                v-show="canShowMobileNav"
+                v-show="isMobile"
                 @clickItem="onMobyNavClickItem"
             />
         </div>
@@ -43,8 +43,8 @@ export default {
             },
             navigation: {},
             mobynav: false,
-            canShowMobileNav: null,
-            uKey: 1
+            uKey: 1,
+            mKey: 0
         }
     },
     components: {
@@ -62,6 +62,7 @@ export default {
         this.loadData()
     },
     mounted() {
+        this.mKey++
         this.updateMobileNavState()
     },
     methods: {
@@ -69,8 +70,7 @@ export default {
             this.uKey = this.uKey > 1000 ? 1 : ++this.uKey
         },
         updateMobileNavState() {
-            this.canShowMobileNav = this.$store.state.mediaTag
-            this.mobynav = this.canShowMobileNav ? this.mobynav : false
+            this.mobynav = this.isMobile ? this.mobynav : false
         },
         onWindowResized(data) {
             this.updateMobileNavState()
@@ -96,7 +96,7 @@ export default {
             this.cmsDialog.id = null
         },
         onSubNavClickPath(evt) {
-            this.mobynav = this.mobynav ? false : this.canShowMobileNav
+            this.mobynav = this.mobynav ? false : this.isMobile
         },
         onMobyNavClickItem(evt) {
             if (!evt.mainKey) {
@@ -120,6 +120,13 @@ export default {
             setTimeout(() => {
                 this.mobynav = false
             }, 200)
+        }
+    },
+    computed: {
+        isMobile() {
+            const mKey = this.mKey // triggers update
+            // console.log('DP:CP isMobile this.$store.state.mediaTag = ', this.$store.state.mediaTag)
+            return this.$store.state.isMobile
         }
     }
 }
@@ -159,7 +166,7 @@ export default {
             top: 70px;
             left: 30px;
             .sub-nav {
-                margin-top: 5px;
+                margin-top: 3px;
                 margin-left: 5px;
                 width: calc(100% + 0px);
             }
@@ -181,7 +188,8 @@ export default {
             width: calc(100vw - 32px);
             .sub-nav {
                 height: 53px;
-                margin-top: -12px;
+                // margin-top: -12px;
+                margin-top: 2px;
                 margin-left: 0px;
                 width: calc(100% + 12px);
                 ::v-deep {

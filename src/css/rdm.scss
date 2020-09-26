@@ -814,156 +814,31 @@ button:focus,
     --screen-h: calc(100vh);
     .content-container {
         width: calc(100vw - 500px);
+        // width: calc(100vw - 336px);
         max-width: 800px;
-        @media (max-width: 940px) {
-            // min-width: calc(100vw - 340px);
-            min-width: unset;
+        // desktop version specials
+        &.media-width-940 {
+            min-width: calc(100vw - 410px);
+            width: calc(100vw - 410px);
             max-width: unset;
-            width: calc(100vw - 336px);
+        }
+        &.media-width-834 {
+            // ipad pro 11, m-pad
+            min-width: calc(100vw - 410px);
+            width: calc(100vw - 410px);
+            max-width: unset;
         }
         &.media-width-768 {
             min-width: unset;
             max-width: unset;
         }
-        .content {
-            .layers {
-                // standard settings
-                //
-                //
-                // TODO evaluate the css arguments below
-                // --vh100: -moz-available; /* WebKit-based browsers will ignore this. */
-                // --vh100: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-                // --vh100: fill-available;
-                //
-                // NOTE: IOS 13 devices appear as OS-X !!
-                // IOS detection not longer possible here
-
-                // 2048x1536
-                // The iPad 3
-                // The iPad 4
-                // The iPad Air
-                // The iPad Air 2
-                // The 2017 iPad (5th Generation)
-                // The iPad Mini 2
-                // The iPad Mini 3
-                // The iPad Mini 4
-                // The 9.7-inch iPad Pro
-
-                // 2160x1620 The 10.2-inch iPad (2019)
-                // 2224x1668 1112 834 The 10.5-inch iPad Pro
-                // 2388x1668 1194 834 The 11-inch iPad Pro
-
-                &.sc-h1194.sc-w834.rt2 {
-                    // m-pad / iPad-Pro
-                    --screen-h: 1194px; // TODO write --screen-h automatial via ja after detection
-                    --dy: 250px;
-                    &.landscape {
-                        --screen-h: 834px;
-                        --dy: 250px;
-                    }
-                }
-                &.sc-h1366.sc-w1024.rt2 {
-                    // iPad-Pro 12
-                    --screen-h: 1366px; // TODO write --screen-h automatial via ja after detection
-                    --dy: 250px;
-                    &.landscape {
-                        --screen-h: 1024px;
-                        --dy: 250px;
-                    }
-                    // TODO get a reliable detection for the browsers to optimize the
-                    // bottom-nav-bar offset!
-                    // It's NOT easy in IOS since u see only the compatibilities there, so
-                    // chrome looks like firefox looks like safari ...
-                    // &.safari {
-                    //     --dy: 200px;
-                    //     &.landscape {
-                    //         --dy: 200px;
-                    //     }
-                    // }
-                    // &.firefox {
-                    //     --dy: 250px;
-                    //     &.landscape {
-                    //         --dy: 160px;
-                    //     }
-                    // }
-                    // &.chrome {
-                    //     --dy: 240px;
-                    //     &.landscape {
-                    //         --dy: 240px;
-                    //     }
-                    // }
-                }
-                // iPhone-X
-                &.sc-h812.sc-w375.rt3 {
-                    &.safari {
-                        --dy: 125px;
-                        &.landscape {
-                            --dy: 10px;
-                        }
-                    }
-                    &.firefox {
-                        --dy: 20px;
-                        &.landscape {
-                            --dy: 20px;
-                        }
-                    }
-                    &.chrome {
-                        --dy: 130px;
-                        &.landscape {
-                            --dy: 50px;
-                        }
-                    }
-                }
-                // TEST desktop
-                // &.sc-h1120.sc-w1792.rt2 {
-                //     --screen-h: 1120px;
-                //     --dy: 600px;
-                // }
-
-                &.sc-h1024.sc-w768 {
-                    // older iPads, mobile gets forced by setting media-tag:
-                    // <meta name="viewport" content="width=768" />
-                    &.rt1,
-                    &.rt2 {
-                        --screen-h: 1024px; // TODO write --screen-h automatial via ja after detection
-                        --dy: 250px;
-                        &.landscape {
-                            --screen-h: 768px;
-                            --dy: 400px;
-                        }
-                    }
-                }
-
-                .scroll-area {
-                    // --screen-h: 768px;
-                    // --dy: 50px;
-                    height: calc(var(--screen-h) - 30px - var(--dy));
-                    height: calc(var(--screen-h) - 100px);
-
-                    max-height: 2000px;
-                }
-                .bg {
-                    // --screen-h: 768px;
-                    // --dy: 50px;
-                    height: calc(var(--screen-h) - var(--dy));
-                    height: calc(var(--screen-h) - 100px);
-
-                    max-height: 2000px;
-                }
-                // }
-            }
-        }
     }
     .mobile-navigator .scroll-area {
-        // --screen-h: 768px;
-        // --dy: 50px;
-        height: calc(var(--screen-h) - 10px - var(--dy));
-        height: calc(var(--screen-h) - 100px);
         min-height: unset;
         max-height: unset;
         width: calc(100vw - 500px);
         max-width: 800px;
-        @media (max-width: 940px) {
+        &.media-width-940 {
             min-width: unset;
             max-width: unset;
             width: calc(100vw - 20px);

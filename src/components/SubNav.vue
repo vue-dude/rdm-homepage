@@ -3,16 +3,12 @@
         <div class="main hidden" v-html="$t(routePathList[0])"></div>
         <div class="sub hidden" v-html="$t(routePathList[1])"></div>
         <div class="level3 hidden" v-html="$t(routePathList[2])"></div>
-        <div class="home" :class="[$store.state.mediaTag]" @click="canOpenMobileNav ? $emit('click-path') : null">
+        <div class="home" :class="[$store.state.mediaTag]" @click="$emit('click-path')">
             <div class="burger-line"></div>
             <div class="burger-line"></div>
             <div class="burger-line"></div>
         </div>
-        <div
-            class="inner"
-            :class="{ clickable: canOpenMobileNav }"
-            @click="canOpenMobileNav ? $emit('click-path') : null"
-        >
+        <div class="inner" :class="{ clickable: isMobile }" @click="$emit('click-path')">
             <div class="path" :class="{ show: showPath }">
                 <div>{{ path.main }}</div>
                 <div class="sp">/</div>
@@ -52,21 +48,19 @@ export default {
             },
             showPath: null,
             showPathTimeout: null,
-            canOpenMobileNav: null
+            uKey: 0
         }
     },
     created() {
         globals.eventBus.$on('routeWillChange', this.onRouteWillChange)
-        globals.eventBus.$on('windowResized', this.updateMobileNavState)
-        this.updateMobileNavState()
+    },
+    mounted() {
+        this.uKey++
     },
     beforeDestroy() {
         globals.eventBus.$off('routeWillChange', this.onRouteWillChange)
     },
     methods: {
-        updateMobileNavState() {
-            this.canOpenMobileNav = this.$store.state.mediaTag
-        },
         onRouteWillChange(args) {
             // TODO may needs update for level 3 !
             if (args.mainKey !== this.path.mainKey || args.subKey !== this.path.subKey) {
@@ -95,6 +89,11 @@ export default {
         }
     },
     computed: {
+        isMobile() {
+            const uKey = this.uKey // triggers update
+            // console.log('SUB:CP isMobile this.$store.state.mediaTag = ', this.$store.state.mediaTag)
+            return this.$store.state.isMobile
+        },
         routePathList() {
             const res = []
             _.each(this.$route.matched, obj => {

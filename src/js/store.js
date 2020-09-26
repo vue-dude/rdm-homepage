@@ -11,7 +11,9 @@ const store = new Vuex.Store({
         device: {
             // classes 'e.g. sc-h1120 sc-w1792 rt2 firefox portrait'
         },
-        mediaTag: '', // media-width-768
+        mediaTag: '', // media-width-768,
+        isMobile: false,
+        innerHeight: 0,
         rKey: 0
     },
     actions: {
@@ -27,10 +29,32 @@ const store = new Vuex.Store({
         setDevice(context, device) {
             this.state.device = device || {}
             this.state.mediaTag = ''
+            // TODO move all following into the device control class
+            //
             const vp = device.viewport
-            const width = vp.width < vp.innerWidth ? vp.width: vp.innerWidth
-            if (width <= 769) {
-                this.state.mediaTag = 'media-width-768'
+
+            const setMediaTag = num => {
+                this.state.mediaTag = `media-width-${num}`
+                this.state.isMobile = num === 768
+            }
+
+            const setInnerHeight = num => (this.state.innerHeight = num)
+
+            const innerWidth = vp.width < vp.innerWidth ? vp.width : vp.innerWidth
+            setInnerHeight(vp.innerHeight)
+
+            switch (true) {
+                case vp.width === 834: // m-pad
+                    return setMediaTag(vp.width)
+                case vp.width === 1024: // i-pad pro 12
+                    return setMediaTag(vp.width)
+            }
+            // detect by content size, enforce mobile version
+            switch (true) {
+                case innerWidth <= 769:
+                    return setMediaTag(768) // !!! 768 NOT 769 here !!!
+                case innerWidth <= 940:
+                    return setMediaTag(940)
             }
             // TODO add force mediaTag 768 on largr devices, e.g. edge
         },

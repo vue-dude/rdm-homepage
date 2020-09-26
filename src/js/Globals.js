@@ -5,8 +5,6 @@ function Globals() {
     this.DEV_MODE = DEV_MODE
     console.log('GLBL: DEV_MODE = ', DEV_MODE)
     //
-    this.MOBILE_NAV_SWITCH = 760
-    //
     // vue-router
     //
     let router = null

@@ -139,7 +139,6 @@ export default {
         },
         updateMobileNavState() {
             this.items = this.getMainNavigationByStructure(this.config)
-            const state = $(window).width() < globals.MOBILE_NAV_SWITCH
             clearTimeout(this.tmeInitPositions)
             clearTimeout(this.tmeBoxHeights)
             this.tmeInitPositions = setTimeout(() => {

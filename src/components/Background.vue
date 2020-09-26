@@ -1,12 +1,12 @@
 <template>
     <div class="background color-worlds">
         <div class="bg initial show"></div>
-        <div class="coast-line" :class="[{ visible: showLandscape }, colorWorld]">
+        <div v-if="!isMobile" class="coast-line" :class="[{ visible: showLandscape }, colorWorld]">
             <div class="shore p1" :class="colorWorld" />
             <div class="shore p2" />
             <div class="shore p3" />
         </div>
-        <div class="lightpath" :class="[{ visible: showLandscape }, colorWorld]">
+        <div v-if="!isMobile" class="lightpath" :class="[{ visible: showLandscape }, colorWorld]">
             <div class="tower">
                 <div class="beam" :class="colorWorld" />
             </div>
@@ -31,7 +31,8 @@ export default {
             styles: {},
             initializing: true,
             worldColors: globals.getWorldColorKeys(),
-            showLandscape: false
+            showLandscape: false,
+            uKey: 0
         }
     },
     mounted() {
@@ -45,16 +46,22 @@ export default {
         this.initializing = false
         setTimeout(() => {
             this.showLandscape = true
+            this.uKey++
         }, 1000)
     },
     watch: {
         '$store.state.colorWorld'(now, prev) {
             this.colorWorld = now
-            console.log('BG:colorWorld this.styles = ',this.styles)
             const sel = '.background .bg.show'
             gsap.to(sel, 1.0, {
                 'background-image': this.styles[now].bg
             })
+        }
+    },
+    computed: {
+        isMobile () {
+            const uKey = this.uKey // triggers update
+            return this.$store.state.isMobile
         }
     }
 }

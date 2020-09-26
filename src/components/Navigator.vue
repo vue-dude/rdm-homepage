@@ -274,7 +274,7 @@ export default {
             },
             beforeInit: true,
             microNavIconSource: null,
-            mobileNavEnabled: $(window).width() < globals.MOBILE_NAV_SWITCH,
+            mobileNavEnabled: this.$store.state.isMobile,
             hideSubnav: false
         }
     },
@@ -417,7 +417,7 @@ export default {
             //
         },
         onWindowResized(data) {
-            const mobileNavEnabled = $(window).width() < globals.MOBILE_NAV_SWITCH
+            const mobileNavEnabled = this.$store.state.isMobile
             const forceResize = !mobileNavEnabled && this.mobileNavEnabled === true
             if (!this.hideSubnav) {
                 this.hideSubnav = forceResize
