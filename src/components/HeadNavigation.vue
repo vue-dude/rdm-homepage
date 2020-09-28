@@ -1,15 +1,16 @@
 <template>
     <div class="head-navigation" :class="[$store.state.mediaTag]">
         <div
-            class="left" :class="[logoShifted, $store.state.mediaTag]"
+            class="left"
+            :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]"
             @click="onClickHeadline"
             v-html="$t('head.title')"
         ></div>
         <div class="right">
-            <div class="logo" :class="[logoShifted, $store.state.mediaTag]" @click="toggleLogo">
+            <div class="logo" :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]" @click="toggleLogo">
                 <div class="image"></div>
             </div>
-            <div class="legal" :class="[logoShifted, $store.state.mediaTag]" v-html="right"></div>
+            <div class="legal" :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]" v-html="right"></div>
         </div>
     </div>
 </template>
@@ -30,9 +31,7 @@ export default {
     },
     mounted() {
         this.logoShiftPix = globals.getAttrFromCssContent('.head-navigation').logoShiftPix
-        globals.eventBus.$on('windowResized', this.onWindowResized)
     },
-
     beforeDetroy() {
         globals.eventBus.$off('windowResized', this.onWindowResized)
     },
@@ -55,10 +54,7 @@ export default {
             this.$store.dispatch('setColorWord', home[0])
         },
         onWindowResized(evt) {
-            this.logoShifted = true
-            if (evt.now.innerWidth > this.logoShiftPix) {
-                this.logoShifted = false
-            }
+            this.logoShifted = evt.now.innerWidth < this.logoShiftPix
         },
         toggleLogo() {
             const link = () => window.open(this.logoLink, '_blank')
@@ -112,10 +108,9 @@ export default {
         width: calc(100vw - 460px);
         white-space: nowrap;
         cursor: pointer;
-        // @media (max-width: 769px) {
         &.media-width-768 {
             width: calc(100vw - 190px);
-            &.logoShifted {
+            &.logo-shifted {
                 width: calc(100vw - 60px);
             }
         }
@@ -131,14 +126,13 @@ export default {
             padding-right: 5px;
             border-radius: 5px;
             // TODO see top
-            // @media (max-width: 769px) {
             &.media-width-768 {
                 position: absolute;
                 display: flex;
                 left: 10px;
                 top: 20px;
                 max-width: calc(100vw - 172px);
-                &.logoShifted {
+                &.logo-shifted {
                     max-width: calc(100vw - 72px);
                 }
                 a {
@@ -160,7 +154,6 @@ export default {
             cursor: pointer;
             // TODO see top
             &.media-width-768 {
-                // @media (max-width: 769px) {
                 position: absolute;
                 float: unset;
                 right: 0px;
@@ -173,7 +166,7 @@ export default {
                 transform-origin: right top;
                 margin-right: 0px;
                 transition: margin-right 200ms;
-                &.logoShifted {
+                &.logo-shifted {
                     margin-right: -100px;
                     transition: margin-right 200ms;
                 }

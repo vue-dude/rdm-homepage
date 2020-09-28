@@ -58,7 +58,6 @@ export default {
         },
         updateDevice() {
             const device = new DeviceDetector(window).getDevice()
-            console.log('APP:updateDevice device = ', device)
             this.$store.dispatch('setDevice', device)
         },
         updateAppHeight(height) {
