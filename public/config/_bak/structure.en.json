@@ -5,28 +5,23 @@
         "scrollHintDelayMsec": 5000,
         "translations": {
             "en": {}
-        }
+        },
+        "home": ["structure", "startpage"]
     },
     "router": [
         {
             "path": "*",
             "redirect": "/structure",
             "children": "structure"
-        },
-        {
-            "path": "/admin",
-            "meta": {
-                "admin": true
-            }
         }
     ],
     "structure": {
         "structure": {
             "sub": {
-                "intro": {},
+                "startpage": {},
                 "website": {},
-                "contact": {},
-                "credits": {}
+                "intro": {},
+                "contact": {}
             }
         },
         "start": {
@@ -36,8 +31,10 @@
                 "legalAndEthical": {},
                 "fileHandling": {},
                 "fileFormats": {},
-                "sustainabilityFactors": {},
-                "pdfFormat": {}
+                "pdfFormat": {
+                    "mainNav": false,
+                    "circleNav": false
+                }
             }
         },
         "running": {
@@ -71,10 +68,10 @@
                     "circleNav": false
                 },
                 "imprint": {
-                     "circleNav": false
+                    "circleNav": false
                 },
                 "privacy": {
-                     "circleNav": false
+                    "circleNav": false
                 }
             }
         }
