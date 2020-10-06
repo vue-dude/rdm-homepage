@@ -344,7 +344,7 @@ export default {
         },
         $route(to, from) {
             const keys = globals.getCurrentRouterPath().keys
-            if (this.routeNeedsUpdate(keys)) {
+            if (this.routeNeedsUpdate(keys) || this.suspend) {
                 this.triggerMain(keys[0], keys[1])
             }
         }
@@ -417,28 +417,30 @@ export default {
             //
         },
         onWindowResized(data) {
-            const mobileNavEnabled = this.$store.state.isMobile
-            const forceResize = !mobileNavEnabled && this.mobileNavEnabled === true
-            if (!this.hideSubnav) {
-                this.hideSubnav = forceResize
-            }
-            this.mobileNavEnabled = mobileNavEnabled
-            if (forceResize) {
-                setTimeout(() => {
-                    this.rebuildSubNavigation({ subKey: this.selectedSub })
-                }, 1500)
-                setTimeout(() => {
-                    this.hideSubnav = false
-                }, 1550)
-            }
-            if (data.dHeight !== 0 || forceResize) {
-                scrollHint.stop()
-                clearTimeout(this.scrollHintTme)
-                $('.navigator .border.down').attr('style', null)
-                clearTimeout(this.resizeTme)
-                this.resizeTme = setTimeout(() => {
-                    this.rebuildSubNavigation({ subKey: this.selectedSub })
-                }, 350)
+            if (!this.suspend) {
+                const mobileNavEnabled = this.$store.state.isMobile
+                const forceResize = !mobileNavEnabled && this.mobileNavEnabled === true
+                if (!this.hideSubnav) {
+                    this.hideSubnav = forceResize
+                }
+                this.mobileNavEnabled = mobileNavEnabled
+                if (forceResize) {
+                    setTimeout(() => {
+                        this.rebuildSubNavigation({ subKey: this.selectedSub })
+                    }, 1500)
+                    setTimeout(() => {
+                        this.hideSubnav = false
+                    }, 1550)
+                }
+                if (data.dHeight !== 0 || forceResize) {
+                    scrollHint.stop()
+                    clearTimeout(this.scrollHintTme)
+                    $('.navigator .border.down').attr('style', null)
+                    clearTimeout(this.resizeTme)
+                    this.resizeTme = setTimeout(() => {
+                        this.rebuildSubNavigation({ subKey: this.selectedSub })
+                    }, 350)
+                }
             }
         },
         getMainNavigationByStructure(strc) {
