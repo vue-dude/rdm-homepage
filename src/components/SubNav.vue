@@ -8,7 +8,7 @@
             <div class="burger-line"></div>
             <div class="burger-line"></div>
         </div>
-        <div class="inner" :class="{ clickable: isMobile }" @click="$emit('click-path')">
+        <div class="inner" :class="{ clickable: isMobile, 'shift-left': shiftLeft }" @click="$emit('click-path')">
             <div class="path" :class="{ show: showPath }">
                 <div>{{ path.main }}</div>
                 <div class="sp">/</div>
@@ -94,6 +94,10 @@ export default {
             // console.log('SUB:CP isMobile this.$store.state.mediaTag = ', this.$store.state.mediaTag)
             return this.$store.state.isMobile
         },
+        shiftLeft() {
+            const state = this.$store.state
+            return !state.isMobile && state.innerHeight < 740
+        },
         routePathList() {
             const res = []
             _.each(this.$route.matched, obj => {
@@ -165,6 +169,9 @@ export default {
         position: absolute;
         margin: 4px;
         margin-left: 10px;
+        &.shift-left {
+            margin-left: 25px;
+        }
         &.clickable {
             cursor: pointer;
         }

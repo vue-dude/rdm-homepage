@@ -288,31 +288,6 @@ export default {
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
-        ::v-deep {
-            &::-webkit-scrollbar {
-                display: none;
-            }
-            .ps__thumb-x,
-            .ps__thumb-y {
-                background-color: #d5ded590;
-            }
-            .ps__rail-x:hover > .ps__thumb-x,
-            .ps__rail-x:focus > .ps__thumb-x,
-            .ps__rail-x.ps--clicking .ps__thumb-x {
-                background-color: #b3cbb3c8;
-                height: 6px;
-            }
-            .ps__rail-y:hover > .ps__thumb-y,
-            .ps__rail-y:focus > .ps__thumb-y,
-            .ps__rail-y.ps--clicking .ps__thumb-y {
-                background-color: #b3cbb3c8;
-                width: 6px;
-            }
-            .ps__rail-x,
-            .ps__rail-y {
-                background-color: rgba(255, 255, 255, 0);
-            }
-        }
     }
 
     .box-container {
@@ -326,6 +301,7 @@ export default {
         }
         .world-box {
             width: calc(100vw - 20px);
+            max-width: 860px;
             // border: 1px solid white;
             border-radius: 20px;
             display: block;

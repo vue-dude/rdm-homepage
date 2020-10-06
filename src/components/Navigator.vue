@@ -554,14 +554,29 @@ export default {
             const target = '.navigator .sub-items .nav-item.box'
             this.requestRouteUpdate(this.selectedMain, this.selectedSub)
 
+            const getSubHeight = () => {
+                const innerHeight = this.$store.state.innerHeight
+                switch (true) {
+                    case innerHeight > 800:
+                        return innerHeight - 610
+                    case innerHeight > 720:
+                        return innerHeight - 560
+                    case innerHeight > 650:
+                        return innerHeight - 520
+                }
+                return innerHeight - 480
+            }
+
             gsap.set($('.navigator .sub-items'), {
-                opacity: 0
+                opacity: 0,
+                height: getSubHeight()
             })
 
             const afterBorderAnimation = () => {
                 gsap.set($('.navigator .sub-items'), {
                     delay: 0.05,
-                    opacity: 1
+                    opacity: 1,
+                    height: getSubHeight()
                 })
                 const speed = 0.2 // 0.2
                 const stagDelay = 0.05
@@ -643,6 +658,7 @@ export default {
         },
 
         rebuildSubNavigation(opts = {}) {
+            //
             // TODO: If the submnue of the current mainKey is already open,
             // skip the rebuild/animation action and just select the new subKey
             $('.navigator .sub-nav .sub-items').scrollTop(0)
@@ -668,6 +684,7 @@ export default {
             const delay = _.isNumber(opts.delay) ? opts.delay : 250
             gsap.to($('.navigator .sub-items'), 0.1, {
                 opacity: 0,
+                height: 100,
                 onComplete: () => {
                     this.subTimeout = setTimeout(() => this.animateSub(args), delay)
                 }
@@ -1016,6 +1033,7 @@ export default {
         position: absolute;
         top: calc(100vh - 167px);
         transform: scale(0.8);
+        pointer-events: none;
         .iconz {
             &.arrow,
             &.scroll,
@@ -1195,7 +1213,8 @@ export default {
 
         .sub-items {
             top: $itemsDeltaTop + $radius - $innerHeight;
-            height: calc(100vh - 610px);
+            // height is scripted now to handle the small screen edge cases
+            // height: calc(100vh - 610px);
             position: relative;
             left: 100px;
             width: 305px;

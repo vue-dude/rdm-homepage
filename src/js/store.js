@@ -43,7 +43,10 @@ const store = new Vuex.Store({
             const innerWidth = vp.width < vp.innerWidth ? vp.width : vp.innerWidth
             setInnerHeight(vp.innerHeight)
 
+            this.state.isMobile = false
             switch (true) {
+                case vp.innerHeight < 620: // not enough height for bubble nav
+                    return setMediaTag(768) // enforces mobile version               
                 case vp.width === 834: // m-pad
                     return setMediaTag(vp.width)
                 case vp.width === 1024: // i-pad pro 12

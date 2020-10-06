@@ -125,7 +125,6 @@ export default {
     computed: {
         isMobile() {
             const mKey = this.mKey // triggers update
-            // console.log('DP:CP isMobile this.$store.state.mediaTag = ', this.$store.state.mediaTag)
             return this.$store.state.isMobile
         }
     }
@@ -186,6 +185,7 @@ export default {
             top: 60px;
             left: 10px;
             width: calc(100vw - 32px);
+            max-width: 850px;
             .sub-nav {
                 height: 53px;
                 // margin-top: -12px;
