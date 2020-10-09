@@ -268,7 +268,7 @@ function Datasource() {
         }
         const regx = new RegExp('^[a-zA-Z0-9()_.-]+$', 'g')
         const fn = input.split('.')
-        const postfix = fn.pop()
+        const postfix = fn.pop().toLowerCase()
         let prefix = fn.length > 0 ? fn.join('-') : ''
         const isUsable = !allowedEndings[postfix.toLowerCase()] || prefix === '' ? false : true
         const isMd5ed = !regx.test(prefix)
