@@ -105,10 +105,10 @@
 import Iconz from '@/components/Iconz.vue'
 import NavItem from '@/components/NavItem.vue'
 import { scale, rotate, translate, compose, applyToPoint } from 'transformation-matrix'
-import DeviceDetector from 'device-detector-js'
-const deviceDetector = new DeviceDetector()
-const device = deviceDetector.parse(navigator.userAgent)
-const browser = device.client.name.toUpperCase()
+import DeviceHandler from '@/js/DeviceHandler'
+const browser = new DeviceHandler().getDevice().client.name.toLowerCase()
+console.log('NAV: browser = ',browser)
+
 import { SCALE, POS, POS_CORR, PATH_1, PATH_2 } from '@/js/AnimationData.js'
 
 // TODO make a component from this scroll hint control class
@@ -221,8 +221,8 @@ const ScrollHint = function() {
 const scrollHint = new ScrollHint()
 
 switch (browser) {
-    case 'FIREFOX':
-    case 'SAFARI':
+    case 'firefox':
+    case 'safari':
         POS.LEFT = POS_CORR.LEFT
         POS.RIGHT = POS_CORR.RIGHT
 }
@@ -380,7 +380,7 @@ export default {
         getPathFromSvg($svg, path) {
             // This fixes Safari SVG problems
             // TODO find a better setup for this!
-            if (browser === 'SAFARI' && _.isArray(path)) {
+            if (browser === 'safari' && _.isArray(path)) {
                 return [...path, ...path, ...path, ...path]
             }
             path = $svg[0]
@@ -930,16 +930,17 @@ export default {
         },
 
         addFluidAnimation(item) {
-            function Gravity(item) {
+            function Gravity(item, store) {
+                //
                 const target = `.navigator .gravity.${item.key}`
-
+                //
                 let piCnt1 = _.random(-60, 60)
                 let piCnt2 = _.random(-60, 60)
                 let piCnt3 = _.random(-60, 60)
                 let piCnt4 = _.random(-60, 60)
-
+                //
                 const animate = () => {
-                    if (item.fluidEnabled) {
+                    if (item.fluidEnabled && !store.state.isMobile) {
                         piCnt1++
                         piCnt2++
                         piCnt3++
@@ -969,7 +970,7 @@ export default {
                 }
                 requestAnimationFrame(animate)
             }
-            new Gravity(item)
+            new Gravity(item, this.$store)
         },
         setFluidEnabled() {
             this.suspendItem.fluidEnabled = true

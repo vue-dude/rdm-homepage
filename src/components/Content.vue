@@ -5,7 +5,7 @@
                 <div class="scroll-handler load-style" :class="key"></div>
             </div>
         </div>
-        <div class="layers" :class="[$store.state.device.classes]">
+        <div class="layers" :class="[$store.state.deviceClasses]">
             <div class="bg" :class="[$store.state.colorWorld]"></div>
             <vue-custom-scrollbar
                 ref="scrollarea"

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div class="app" :class="[$store.state.deviceClasses]">
         <div class="hidden">
             <div contenteditable="true" id="ck-init"></div>
         </div>
@@ -16,7 +16,7 @@
 import Background from '@/components/Background'
 import HeadNavigation from '@/components/HeadNavigation'
 import Preloader from '@/components/Preloader'
-import DeviceDetector from '@/js/DeviceDetector'
+import DeviceHandler from '@/js/DeviceHandler'
 
 export default {
     name: 'App',
@@ -57,8 +57,7 @@ export default {
             this.updateDevice()
         },
         updateDevice() {
-            const device = new DeviceDetector(window).getDevice()
-            this.$store.dispatch('setDevice', device)
+            new DeviceHandler(this.$store, globals.SWITCH_WIDTH_MOBILE_PIX).updateDevice()
         },
         updateAppHeight(height) {
             const yOffset = this.$store.state.isMobile ? 100 : 150
@@ -94,11 +93,21 @@ html {
 body {
     margin: 0;
 }
+// TODO move this from goo to mpdl local
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;1,200;1,400&display=swap');
 
-#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+.app {
+    // Nunito is the Avenir replacement for windows based clients
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    //
+    font-family: 'Avenir', 'Nunito', Helvetica, Arial, sans-serif;
+    &.ios,
+    // in fact, Nunito looks a bit better than Avenir on IOS
+    &.win {
+        font-family: 'Nunito', Helvetica, Arial, sans-serif;
+        letter-spacing: -0.02rem; // TODO optimize for different browsers
+    }
     color: #2c3e50;
 }
 

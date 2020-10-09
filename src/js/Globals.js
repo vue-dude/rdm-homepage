@@ -3,6 +3,7 @@ import Vue from 'vue'
 function Globals() {
     const DEV_MODE = window.BASE_CONFIG && window.BASE_CONFIG.devMode === true
     this.DEV_MODE = DEV_MODE
+    this.SWITCH_WIDTH_MOBILE_PIX = 768
     console.log('GLBL: DEV_MODE = ', DEV_MODE)
     //
     // vue-router
@@ -141,6 +142,7 @@ function Globals() {
 
     // this catches the gsap / webkit bug(?) e.g. 'linear-gradient(90deg, ...' won't work,
     // but the same with 'linear-gradient(to right, ...' does
+    // on windows, also there is some strangeness .. 
     const convertDegreesForGsap = input => {
         const inOut = {
             '(45deg': '(to top right',
@@ -234,7 +236,7 @@ function Globals() {
         if (char === track[index]) {
             keyQueue.push(char)
             // if (keyQueue.join('') === 'DVX') {
-                if (keyQueue.join('') === 'D') {
+            if (keyQueue.join('') === 'D') {
                 document.addEventListener('mouseup', showDeviceInfo)
                 keyQueue = []
             }

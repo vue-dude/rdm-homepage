@@ -3,7 +3,7 @@
         <vue-custom-scrollbar
             ref="scrollarea"
             class="scroll-area"
-            :class="[$store.state.mediaTag, $store.state.device.classes]"
+            :class="[$store.state.mediaTag, $store.state.deviceClasses]"
             scrollYMarginOffset="20px"
             :settings="scrConfig"
         >
@@ -48,10 +48,6 @@ import vueCustomScrollbar from 'vue-custom-scrollbar'
 import Iconz from '@/components/Iconz.vue'
 import NavItem from '@/components/NavItem.vue'
 import { scale, rotate, translate, compose, applyToPoint } from 'transformation-matrix'
-import DeviceDetector from 'device-detector-js'
-const deviceDetector = new DeviceDetector()
-const device = deviceDetector.parse(navigator.userAgent)
-const browser = device.client.name.toUpperCase()
 import { SCALE, POS, POS_CORR, PATH_1, PATH_2 } from '@/js/AnimationData.js'
 
 let MAIN_DEFAULT, SUB_DEFAULT
