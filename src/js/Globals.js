@@ -1,9 +1,9 @@
 import Vue from 'vue'
+import DeviceHandler from '@/js/DeviceHandler'
 
 function Globals() {
     const DEV_MODE = window.BASE_CONFIG && window.BASE_CONFIG.devMode === true
     this.DEV_MODE = DEV_MODE
-    this.SWITCH_WIDTH_MOBILE_PIX = 768
     console.log('GLBL: DEV_MODE = ', DEV_MODE)
     //
     // vue-router
@@ -221,7 +221,7 @@ function Globals() {
 
     const showDeviceInfo = () => {
         document.removeEventListener('mouseup', showDeviceInfo)
-        const device = this.getStore().state.device
+        const device = new DeviceHandler(store).getDevice()
         window.alert(JSON.stringify(device))
     }
     this.showDeviceInfoDelayed = () => {

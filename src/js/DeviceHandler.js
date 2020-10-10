@@ -1,6 +1,7 @@
 import BaseDetector from 'device-detector-js'
 
-function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 600) {
+// TODO move the 768 to a singkle source of truth, before globals!!!
+function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 768) {
     const bd = new BaseDetector()
     let ua = navigator.userAgent
     const base = bd.parse(ua)
@@ -29,6 +30,8 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 600) {
                 return 'adr'
             case 'windows':
                 return 'win'
+            case 'ios': // before IOS 13
+                return 'ios'
             case 'mac':
                 // get infos from:
                 // https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/Displays/Displays.html
@@ -116,11 +119,15 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 600) {
     const mProps = generateMobileProperties()
     device.states = {
         classes: generateCssClasses(),
+        os: getOS(),
+        // os: 'ios', // TEST
         mediaTag: mProps.mediaWidth ? `media-width-${mProps.mediaWidth}` : '',
         isMobile: mProps.isMobile,
         innerHeight: vp.innerHeight
     }
     // use it with vue store or with classic get-setup
+    console.log('DH: device = ', device)
+    console.log('DH: device.states = ', device.states)
     this.getDevice = () => device
     this.updateDevice = () => {
         store ? store.dispatch('updateDevice', device.states) : null

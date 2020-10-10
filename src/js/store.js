@@ -10,6 +10,7 @@ const store = new Vuex.Store({
         colorWorld: 'initial',
         deviceClasses: '',
         mediaTag: '', 
+        os: '', 
         isMobile: false,
         innerHeight: 0,
         rKey: 0
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
         },
         updateDevice(context, deviceStates) {
             this.state.deviceClasses = deviceStates.classes
+            this.state.os = deviceStates.os
             this.state.mediaTag = deviceStates.mediaTag
             this.state.isMobile = deviceStates.isMobile
             this.state.innerHeight = deviceStates.innerHeight

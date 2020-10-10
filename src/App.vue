@@ -57,7 +57,7 @@ export default {
             this.updateDevice()
         },
         updateDevice() {
-            new DeviceHandler(this.$store, globals.SWITCH_WIDTH_MOBILE_PIX).updateDevice()
+            new DeviceHandler(this.$store).updateDevice()
         },
         updateAppHeight(height) {
             const yOffset = this.$store.state.isMobile ? 100 : 150

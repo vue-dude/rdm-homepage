@@ -7,7 +7,17 @@
         </div>
         <div class="layers" :class="[$store.state.deviceClasses]">
             <div class="bg" :class="[$store.state.colorWorld]"></div>
+            <div v-if="useNativeMomentumScroll" ref="scrollarea" class="scroll-area">
+                <div
+                    class="text"
+                    :class="{ fadeIn: showContent, fadeOut: !showContent }"
+                    :contenteditable="cmsEnabled"
+                    :id="i18nKey"
+                    v-html="translation"
+                ></div>
+            </div>
             <vue-custom-scrollbar
+                v-else
                 ref="scrollarea"
                 class="scroll-area"
                 :settings="scrConfig"
@@ -88,6 +98,9 @@ export default {
         }
     },
     computed: {
+        useNativeMomentumScroll() {
+            return this.$store.state.os === 'ios' || this.$store.state.os === 'adr'
+        },
         cmsEnabled() {
             const uKey = this.uKey
             return globals.cmsEnabled
@@ -177,6 +190,7 @@ export default {
             overflow-y: auto;
             overflow-x: hidden;
             scrollbar-width: none;
+        // -webkit-overflow-scrolling: touch; // sets momentum scroll on IOS, set only beyond IOS 13 !!!
             .text {
                 margin-right: 45px;
                 &.fadeIn {
@@ -188,31 +202,31 @@ export default {
                     @include transition(opacity 0.01s);
                 }
             }
-            ::v-deep {
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-                .ps__thumb-x,
-                .ps__thumb-y {
-                    background-color: #afcfaf;
-                }
-                .ps__rail-x:hover > .ps__thumb-x,
-                .ps__rail-x:focus > .ps__thumb-x,
-                .ps__rail-x.ps--clicking .ps__thumb-x {
-                    background-color: #8fc28f;
-                    height: 6px;
-                }
-                .ps__rail-y:hover > .ps__thumb-y,
-                .ps__rail-y:focus > .ps__thumb-y,
-                .ps__rail-y.ps--clicking .ps__thumb-y {
-                    background-color: #8fc28f;
-                    width: 6px;
-                }
-                .ps__rail-x,
-                .ps__rail-y {
-                    background-color: #fff0;
-                }
-            }
+            // ::v-deep {
+            //     &::-webkit-scrollbar {
+            //         display: none;
+            //     }
+            //     .ps__thumb-x,
+            //     .ps__thumb-y {
+            //         background-color: #afcfaf;
+            //     }
+            //     .ps__rail-x:hover > .ps__thumb-x,
+            //     .ps__rail-x:focus > .ps__thumb-x,
+            //     .ps__rail-x.ps--clicking .ps__thumb-x {
+            //         background-color: #8fc28f;
+            //         height: 6px;
+            //     }
+            //     .ps__rail-y:hover > .ps__thumb-y,
+            //     .ps__rail-y:focus > .ps__thumb-y,
+            //     .ps__rail-y.ps--clicking .ps__thumb-y {
+            //         background-color: #8fc28f;
+            //         width: 6px;
+            //     }
+            //     .ps__rail-x,
+            //     .ps__rail-y {
+            //         background-color: #fff0;
+            //     }
+            // }
         }
         .bg {
             width: calc(100% + 12px);

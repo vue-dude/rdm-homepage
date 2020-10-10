@@ -1,6 +1,44 @@
 <template>
     <div class="mobile-navigator">
+        <div
+            v-if="useNativeMomentumScroll"
+            ref="scrollarea"
+            class="scroll-area"
+            :class="[$store.state.mediaTag, $store.state.deviceClasses]"
+        >
+            <div class="box-container color-worlds background">
+                <div class="world-box" v-for="(item, key) in items" :class="key" :key="key">
+                    <div class="bg" :class="key" @click="onClickItem({ mainKey: null })"></div>
+                    <div class="gravity" :class="key">
+                        <NavItem
+                            :key="key"
+                            class="bubble"
+                            :class="{
+                                [item.key]: true,
+                                suspend: false
+                            }"
+                            @clicked="onClickItem({ mainKey: key, subKey: null })"
+                            :config="item"
+                            parent="mobile-navigator"
+                            :cmsActive="isCmsActive"
+                        ></NavItem>
+                    </div>
+                    <div class="sub-items">
+                        <NavItem
+                            v-for="subitem in items[key].sub"
+                            :key="subitem.key"
+                            class="box"
+                            @clicked="onClickItem({ mainKey: key, subKey: subitem.key })"
+                            :config="subitem"
+                            parent="mobile-navigator"
+                            :cmsActive="isCmsActive"
+                        ></NavItem>
+                    </div>
+                </div>
+            </div>
+        </div>
         <vue-custom-scrollbar
+            v-else
             ref="scrollarea"
             class="scroll-area"
             :class="[$store.state.mediaTag, $store.state.deviceClasses]"
@@ -118,6 +156,9 @@ export default {
         }
     },
     computed: {
+        useNativeMomentumScroll() {
+            return this.$store.state.os === 'ios' || this.$store.state.os === 'adr'
+        },
         sub() {
             if (this.selectedMain) {
                 return this.items[this.selectedMain].sub
@@ -284,6 +325,7 @@ export default {
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
+        // -webkit-overflow-scrolling: touch; // sets momentum scroll on IOS, set only beyond IOS 13 !!!
     }
 
     .box-container {
