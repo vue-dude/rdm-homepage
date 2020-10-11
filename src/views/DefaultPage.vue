@@ -27,6 +27,8 @@ import MobileNavigator from '@/components/MobileNavigator.vue'
 import SubNav from '@/components/SubNav.vue'
 import Content from '@/components/Content.vue'
 import CmsControls from '@/components/CmsControls.vue'
+import DeviceHandler from '@/js/DeviceHandler'
+
 //
 export default {
     name: 'default-view',
@@ -44,7 +46,8 @@ export default {
             navigation: {},
             mobynav: false,
             uKey: 1,
-            mKey: 0
+            mKey: 0,
+            iosHackyUpdate: true
         }
     },
     components: {
@@ -97,6 +100,13 @@ export default {
         },
         onSubNavClickPath(evt) {
             this.mobynav = this.mobynav ? false : this.isMobile
+            console.log('DP:onSubNavClickPath this.mobynav = ',this.mobynav)
+            if (this.mobynav && this.iosHackyUpdate) {
+                // this.iosHackyUpdate = false // better do it always for first ...
+                setTimeout(() => {
+                    new DeviceHandler(this.$store).forceIosHackyRotationUpdate()
+                }, 100)
+            }
         },
         onMobyNavClickItem(evt) {
             if (!evt.mainKey) {

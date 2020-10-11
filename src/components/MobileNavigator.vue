@@ -325,7 +325,8 @@ export default {
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
-        // -webkit-overflow-scrolling: touch; // sets momentum scroll on IOS, set only beyond IOS 13 !!!
+        // TODO seems to trigger momentum scroll before IOS 13, needs further evaluation
+        -webkit-overflow-scrolling: touch;
     }
 
     .box-container {

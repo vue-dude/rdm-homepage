@@ -65,11 +65,25 @@ export default {
             $('.default-view .content-container .content .layers .scroll-area').height(height - yOffset - dy)
             $('.default-view .content-container .content .layers .bg').height(height - yOffset - dy + 30)
             $('.default-view .mobile-navigator .scroll-area').height(height - yOffset - dy + 30)
+        },
+        updateAppWidth(width) {
+            const state = this.$store.state
+            if (state.isMobile) {
+                $('.default-view .content-container').width(state.innerWidth - 32)
+            } else {
+                $('.default-view .content-container').width('') // none-mobile situation driven by css
+            }
         }
     },
     watch: {
+        '$store.state.innerWidth'() {
+            this.updateAppWidth()
+        },
         '$store.state.innerHeight'(height) {
             this.updateAppHeight(height)
+        },
+        '$store.state.isMobile'() {
+            this.updateAppWidth()
         }
     }
 }

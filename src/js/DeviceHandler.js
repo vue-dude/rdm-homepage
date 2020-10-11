@@ -30,7 +30,9 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 768) {
                 return 'adr'
             case 'windows':
                 return 'win'
-            case 'ios': // before IOS 13
+            // NOTE: the user agent OS shows 'ios' on chrome,
+            // but 'Mac version 10.15' on FF!
+            case 'ios':
                 return 'ios'
             case 'mac':
                 // get infos from:
@@ -72,7 +74,8 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 768) {
     }
 
     const generateMobileProperties = () => {
-        const innerWidth = vp.width < vp.innerWidth ? vp.width : vp.innerWidth
+        // const innerWidth = vp.width < vp.innerWidth ? vp.width : vp.innerWidth
+        const innerWidth = vp.width < vp.innerWidth ? vp.innerHeight : vp.innerWidth
         const mobileDefault = {
             mediaWidth: SWITCH_WIDTH_MOBILE_PIX,
             isMobile: true
@@ -123,7 +126,8 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 768) {
         // os: 'ios', // TEST
         mediaTag: mProps.mediaWidth ? `media-width-${mProps.mediaWidth}` : '',
         isMobile: mProps.isMobile,
-        innerHeight: vp.innerHeight
+        innerHeight: vp.innerHeight,
+        innerWidth: vp.innerWidth
     }
     // use it with vue store or with classic get-setup
     console.log('DH: device = ', device)
@@ -131,6 +135,20 @@ function DeviceHandler(store = null, SWITCH_WIDTH_MOBILE_PIX = 768) {
     this.getDevice = () => device
     this.updateDevice = () => {
         store ? store.dispatch('updateDevice', device.states) : null
+    }
+
+    // this fixes the problem IOS sometimes dont recognizes a scrollable content right after start
+    this.forceIosHackyRotationUpdate = () => {
+        if (device.states.os === 'ios') {
+            const states = { ...device.states }
+            states.innerHeight = device.states.innerWidth
+            states.innerWidth = device.states.innerHeight
+            states.classes = ''
+            store ? store.dispatch('updateDevice', states) : null
+            setTimeout(() => {
+                this.updateDevice()
+            }, 1)
+        }
     }
 }
 

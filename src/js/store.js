@@ -12,6 +12,7 @@ const store = new Vuex.Store({
         mediaTag: '', 
         os: '', 
         isMobile: false,
+        innerWidth: 0,
         innerHeight: 0,
         rKey: 0
     },
@@ -30,6 +31,7 @@ const store = new Vuex.Store({
             this.state.os = deviceStates.os
             this.state.mediaTag = deviceStates.mediaTag
             this.state.isMobile = deviceStates.isMobile
+            this.state.innerWidth = deviceStates.innerWidth
             this.state.innerHeight = deviceStates.innerHeight
         },
         orientationChanged(context) {
