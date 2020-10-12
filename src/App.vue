@@ -59,7 +59,11 @@ export default {
         updateDevice() {
             new DeviceHandler(this.$store).updateDevice()
         },
-        updateAppHeight(height) {
+        updateAppHeight() {
+            let height = this.$store.state.innerHeight
+            if (height > 1250 && !this.$store.state.isMobile) {
+                height = 1250
+            }
             const yOffset = this.$store.state.isMobile ? 100 : 150
             const dy = this.$store.state.isMobile ? 50 : 30
             $('.default-view .content-container .content .layers .scroll-area').height(height - yOffset - dy)
@@ -78,12 +82,14 @@ export default {
     watch: {
         '$store.state.innerWidth'() {
             this.updateAppWidth()
+            this.updateAppHeight()
         },
         '$store.state.innerHeight'(height) {
-            this.updateAppHeight(height)
+            this.updateAppHeight()
         },
         '$store.state.isMobile'() {
             this.updateAppWidth()
+            this.updateAppHeight()
         }
     }
 }
