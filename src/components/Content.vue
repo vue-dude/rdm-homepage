@@ -7,7 +7,7 @@
         </div>
         <div class="layers" :class="[$store.state.deviceClasses]">
             <div class="bg" :class="[$store.state.colorWorld]"></div>
-            <div v-if="useNativeMomentumScroll" ref="scrollarea" class="scroll-area">
+            <div v-if="useNativeMomentumScroll" class="scroll-area">
                 <div
                     class="text"
                     :class="{ fadeIn: showContent, fadeOut: !showContent }"
@@ -16,13 +16,7 @@
                     v-html="translation"
                 ></div>
             </div>
-            <vue-custom-scrollbar
-                v-else
-                ref="scrollarea"
-                class="scroll-area"
-                :settings="scrConfig"
-                scrollYMarginOffset="20px"
-            >
+            <vue-custom-scrollbar v-else class="scroll-area" :settings="scrConfig" scrollYMarginOffset="20px">
                 <div
                     @focus="onFocus"
                     :contenteditable="cmsEnabled"
@@ -63,7 +57,6 @@ export default {
             initializing: true,
             styles: {},
             colorWorld: this.$store.state.colorWorld
-            // device: 'i-pad-pro' // i-phone-x
         }
     },
     created() {
@@ -87,8 +80,7 @@ export default {
             const keys = globals.getCurrentRouterPath().keys
             setTimeout(() => {
                 this.i18nKey = datasource.getValidI18nKey(`content.${keys.join('.')}`)
-                this.scrollArea.scrollTop = 0
-                this.scrollArea.scrollLeft = 0
+                $('.content .layers .scroll-area').scrollTop(0)
                 this.showContent = true
             }, 150)
         },
@@ -115,9 +107,6 @@ export default {
             }
             trns = datasource.updateMediaPaths(trns)
             return trns
-        },
-        scrollArea() {
-            return this.$refs.scrollarea.$el
         },
         worldColors() {
             return globals.getWorldColorKeys()
@@ -180,8 +169,6 @@ export default {
         .scroll-area {
             position: absolute;
             width: calc(100% - 40px);
-            // height: calc(100vh - 160px);
-            // max-height: 970px;
             margin: 20px;
             margin-left: 50px;
             left: 0px;
@@ -203,36 +190,10 @@ export default {
                     @include transition(opacity 0.01s);
                 }
             }
-            // ::v-deep {
-            //     &::-webkit-scrollbar {
-            //         display: none;
-            //     }
-            //     .ps__thumb-x,
-            //     .ps__thumb-y {
-            //         background-color: #afcfaf;
-            //     }
-            //     .ps__rail-x:hover > .ps__thumb-x,
-            //     .ps__rail-x:focus > .ps__thumb-x,
-            //     .ps__rail-x.ps--clicking .ps__thumb-x {
-            //         background-color: #8fc28f;
-            //         height: 6px;
-            //     }
-            //     .ps__rail-y:hover > .ps__thumb-y,
-            //     .ps__rail-y:focus > .ps__thumb-y,
-            //     .ps__rail-y.ps--clicking .ps__thumb-y {
-            //         background-color: #8fc28f;
-            //         width: 6px;
-            //     }
-            //     .ps__rail-x,
-            //     .ps__rail-y {
-            //         background-color: #fff0;
-            //     }
-            // }
         }
         .bg {
             width: calc(100% + 12px);
             // height: calc(100vh - 130px); // moved to device setup in rdm.scss
-            // max-height: 1000px;
             left: 0px;
             top: 0px;
             background-color: white;
