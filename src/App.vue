@@ -1,5 +1,5 @@
 <template>
-    <div class="app" :class="[$store.state.deviceClasses]">
+    <div class="app" :class="[$store.state.deviceClasses]" @click="onClickApp">
         <div class="hidden">
             <div contenteditable="true" id="ck-init"></div>
         </div>
@@ -51,8 +51,14 @@ export default {
         setTimeout(() => {
             this.updateAppHeight(this.$store.state.innerHeight)
         }, 100)
+        $(document).on('touchmove', function(e) {
+            globals.eventBus.$emit('app-touched')
+        })
     },
     methods: {
+        onClickApp(evt) {
+            globals.eventBus.$emit('app-touched')
+        },
         onWindowResized(evt) {
             this.updateDevice()
         },

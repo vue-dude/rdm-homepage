@@ -7,7 +7,7 @@
             v-html="$t('head.title')"
         ></div>
         <div class="right">
-            <div class="logo" :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]" @click="toggleLogo">
+            <div class="logo" :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]" @click.stop="onClickLogo">
                 <div class="image"></div>
             </div>
             <div class="legal" :class="[{ 'logo-shifted': logoShifted }, $store.state.mediaTag]" v-html="right"></div>
@@ -28,12 +28,14 @@ export default {
     },
     created() {
         globals.eventBus.$on('windowResized', this.onWindowResized)
+        globals.eventBus.$on('app-touched', this.onTouchApp)
     },
     mounted() {
         this.logoShiftPix = globals.getAttrFromCssContent('.head-navigation').logoShiftPix
     },
     beforeDetroy() {
         globals.eventBus.$off('windowResized', this.onWindowResized)
+        globals.eventBus.$off('app-touched', this.onTouchApp)
     },
     computed: {
         right() {
@@ -56,17 +58,25 @@ export default {
         onWindowResized(evt) {
             this.logoShifted = evt.now.innerWidth < this.logoShiftPix
         },
-        toggleLogo() {
+        onTouchApp() {
+            if (!this.logoShifted) {
+                this.toggleLogo(true)
+            }
+        },
+        onClickLogo() {
+            this.toggleLogo()
+        },
+        toggleLogo(silent = false) {
             const link = () => window.open(this.logoLink, '_blank')
             const dim = globals.getDimensions()
             if (dim.innerWidth <= this.logoShiftPix) {
                 if (!this.logoShifted) {
-                    link()
+                    silent ? null : link()
                 }
                 this.logoShifted = !this.logoShifted
             } else {
                 this.logoShifted = false
-                link()
+                silent ? null : link()
             }
         }
     }
