@@ -1180,6 +1180,7 @@ export default {
             position: absolute;
             height: $borderHeight;
             overflow: hidden;
+            pointer-events: none;
             &.down {
                 transform: scaleY(-1);
                 content: "{ 'top':'#{$innerHeight - $borderHeight}' }";
