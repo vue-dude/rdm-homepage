@@ -1,0 +1,2196 @@
+/*
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+.ckmod_reset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    width: auto;
+    height: auto;
+    vertical-align: baseline;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box
+}
+
+.ckmod_reset_all,.ckmod_reset_all * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    width: auto;
+    height: auto;
+    vertical-align: baseline;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    border-collapse: collapse;
+    font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+    color: #000;
+    text-align: left;
+    white-space: nowrap;
+    cursor: auto
+}
+
+.ckmod_reset_all .ckmod_rtl * {
+    text-align: right
+}
+
+.ckmod_reset_all iframe {
+    vertical-align: inherit
+}
+
+.ckmod_reset_all textarea {
+    white-space: pre
+}
+
+.ckmod_reset_all textarea,.ckmod_reset_all input[type="text"],.ckmod_reset_all input[type="password"] {
+    cursor: text
+}
+
+.ckmod_reset_all textarea[disabled],.ckmod_reset_all input[type="text"][disabled],.ckmod_reset_all input[type="password"][disabled] {
+    cursor: default
+}
+
+.ckmod_reset_all fieldset {
+    padding: 10px;
+    border: 2px groove #e0dfe3
+}
+
+.ckmod_reset_all select {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box
+}
+
+.ckmod_chrome {
+    display: block;
+    border: 1px solid #b6b6b6;
+    padding: 0;
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    box-shadow: 0 0 3px rgba(0,0,0,.15)
+}
+
+.ckmod_inner {
+    display: block;
+    -webkit-touch-callout: none;
+    background: #fff;
+    padding: 0
+}
+
+.ckmod_float {
+    border: 0
+}
+
+.ckmod_float .ckmod_inner {
+    padding-bottom: 0
+}
+
+.ckmod_top,.ckmod_contents,.ckmod_bottom {
+    display: block;
+    overflow: hidden
+}
+
+.ckmod_top {
+    border-bottom: 1px solid #b6b6b6;
+    padding: 6px 8px 2px;
+    white-space: normal;
+    -moz-box-shadow: 0 1px 0 #fff inset;
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    background: #CFCFFF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0FF),to(#CFCFFF));
+    background-image: -moz-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -webkit-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -o-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -ms-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: linear-gradient(top,#F0F0FF,#CFCFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#F0F0FF',endColorstr='#CFCFFF')
+}
+
+.ckmod_float .ckmod_top {
+    border: 1px solid #b6b6b6;
+    border-bottom-color: #999
+}
+
+.ckmod_bottom {
+    padding: 6px 8px 2px;
+    position: relative;
+    border-top: 1px solid #bfbfbf;
+    -moz-box-shadow: 0 1px 0 #fff inset;
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    background: #CFCFFF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#ebebeb),to(#CFCFFF));
+    background-image: -moz-linear-gradient(top,#ebebeb,#CFCFFF);
+    background-image: -webkit-linear-gradient(top,#ebebeb,#CFCFFF);
+    background-image: -o-linear-gradient(top,#ebebeb,#CFCFFF);
+    background-image: -ms-linear-gradient(top,#ebebeb,#CFCFFF);
+    background-image: linear-gradient(top,#ebebeb,#CFCFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ebebeb',endColorstr='#CFCFFF')
+}
+
+.ckmod_browser_ios .ckmod_contents {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+.ckmod_resizer {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border-width: 10px 10px 0 0;
+    border-color: transparent #666 transparent transparent;
+    border-style: dashed solid dashed dashed;
+    font-size: 0;
+    vertical-align: bottom;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.3);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.3);
+    box-shadow: 0 1px 0 rgba(255,255,255,.3)
+}
+
+.ckmod_hc .ckmod_resizer {
+    font-size: 15px;
+    width: auto;
+    height: auto;
+    border-width: 0
+}
+
+.ckmod_resizer_ltr {
+    cursor: se-resize;
+    float: right;
+    margin-right: -4px
+}
+
+.ckmod_resizer_rtl {
+    border-width: 10px 0 0 10px;
+    border-color: transparent transparent transparent #a5a5a5;
+    border-style: dashed dashed dashed solid;
+    cursor: sw-resize;
+    float: left;
+    margin-left: -4px;
+    right: auto
+}
+
+.ckmod_wysiwyg_div {
+    display: block;
+    height: 100%;
+    overflow: auto;
+    padding: 0 8px;
+    outline-style: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ckmod_panel {
+    visibility: visible;
+    width: 120px;
+    height: 100px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #b6b6b6;
+    border-bottom-color: #999;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    box-shadow: 0 0 3px rgba(0,0,0,.15)
+}
+
+.ckmod_menu_panel {
+    padding: 0;
+    margin: 0
+}
+
+.ckmod_combopanel {
+    width: 150px;
+    height: 170px
+}
+
+.ckmod_panel_frame {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    overflow: auto;
+    overflow-x: hidden
+}
+
+.ckmod_panel_container {
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.ckmod_panel_list {
+    list-style-type: none;
+    margin: 3px;
+    padding: 0;
+    white-space: nowrap
+}
+
+.ckmod_panel_listItem {
+    margin: 0;
+    padding-bottom: 1px
+}
+
+.ckmod_panel_listItem a {
+    padding: 3px 4px;
+    display: block;
+    border: 1px solid #fff;
+    color: inherit!important;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px
+}
+
+* html .ckmod_panel_listItem a {
+    width: 100%;
+    color: #000
+}
+
+*:first-child+html .ckmod_panel_listItem a {
+    color: #000
+}
+
+.ckmod_panel_listItem.ckmod_selected a {
+    border: 1px solid #dedede;
+    background-color: #f2f2f2;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.1) inset;
+    box-shadow: 0 0 2px rgba(0,0,0,.1) inset
+}
+
+.ckmod_panel_listItem a:hover,.ckmod_panel_listItem a:focus,.ckmod_panel_listItem a:active {
+    border-color: #dedede;
+    background-color: #f2f2f2;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.1) inset;
+    box-shadow: 0 0 2px rgba(0,0,0,.1) inset
+}
+
+.ckmod_hc .ckmod_panel_listItem a {
+    border-style: none
+}
+
+.ckmod_hc .ckmod_panel_listItem a:hover,.ckmod_hc .ckmod_panel_listItem a:focus,.ckmod_hc .ckmod_panel_listItem a:active {
+    border: 2px solid;
+    padding: 1px 2px
+}
+
+.ckmod_panel_grouptitle {
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 0;
+    padding: 4px 6px;
+    color: #474747;
+    text-shadow: 0 1px 0 rgba(255,255,255,.75);
+    border-bottom: 1px solid #b6b6b6;
+    -moz-border-radius: 2px 2px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    -moz-box-shadow: 0 1px 0 #fff inset;
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    background: #CFCFFF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0FF),to(#CFCFFF));
+    background-image: -moz-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -webkit-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -o-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: -ms-linear-gradient(top,#F0F0FF,#CFCFFF);
+    background-image: linear-gradient(top,#F0F0FF,#CFCFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#F0F0FF',endColorstr='#CFCFFF')
+}
+
+.ckmod_panel_listItem p,.ckmod_panel_listItem h1,.ckmod_panel_listItem h2,.ckmod_panel_listItem h3,.ckmod_panel_listItem h4,.ckmod_panel_listItem h5,.ckmod_panel_listItem h6,.ckmod_panel_listItem pre {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.ckmod_colorblock {
+    padding: 3px;
+    font-size: 11px;
+    font-family: 'Microsoft Sans Serif',Tahoma,Arial,Verdana,Sans-Serif
+}
+
+.ckmod_colorblock,.ckmod_colorblock a {
+    text-decoration: none;
+    color: #000
+}
+
+span.ckmod_colorbox {
+    width: 10px;
+    height: 10px;
+    border: #808080 1px solid;
+    float: left
+}
+
+.ckmod_rtl span.ckmod_colorbox {
+    float: right
+}
+
+a.ckmod_colorbox {
+    border: #fff 1px solid;
+    padding: 2px;
+    float: left;
+    width: 12px;
+    height: 12px
+}
+
+.ckmod_rtl a.ckmod_colorbox {
+    float: right
+}
+
+a:hover.ckmod_colorbox,a:focus.ckmod_colorbox,a:active.ckmod_colorbox {
+    border: #b6b6b6 1px solid;
+    background-color: #e5e5e5
+}
+
+a.ckmod_colorauto,a.ckmod_colormore {
+    border: #fff 1px solid;
+    padding: 2px;
+    display: block;
+    cursor: pointer
+}
+
+a:hover.ckmod_colorauto,a:hover.ckmod_colormore,a:focus.ckmod_colorauto,a:focus.ckmod_colormore,a:active.ckmod_colorauto,a:active.ckmod_colormore {
+    border: #b6b6b6 1px solid;
+    background-color: #e5e5e5
+}
+
+.ckmod_toolbar {
+    float: left
+}
+
+.ckmod_rtl .ckmod_toolbar {
+    float: right
+}
+
+.ckmod_toolgroup {
+    float: left;
+    margin: 0 6px 5px 0;
+    border: 1px solid #a6a6a6;
+    border-bottom-color: #979797;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    background: #e4e4e4;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
+    background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -o-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
+    background-image: linear-gradient(top,#fff,#e4e4e4);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4')
+}
+
+.ckmod_hc .ckmod_toolgroup {
+    border: 0;
+    margin-right: 10px;
+    margin-bottom: 10px
+}
+
+.ckmod_rtl .ckmod_toolgroup *:first-child {
+    -moz-border-radius: 0 2px 2px 0;
+    -webkit-border-radius: 0 2px 2px 0;
+    border-radius: 0 2px 2px 0
+}
+
+.ckmod_rtl .ckmod_toolgroup *:last-child {
+    -moz-border-radius: 2px 0 0 2px;
+    -webkit-border-radius: 2px 0 0 2px;
+    border-radius: 2px 0 0 2px
+}
+
+.ckmod_rtl .ckmod_toolgroup {
+    float: right;
+    margin-left: 6px;
+    margin-right: 0
+}
+
+a.ckmod_button {
+    display: inline-block;
+    height: 18px;
+    padding: 4px 6px;
+    outline: 0;
+    cursor: default;
+    float: left;
+    border: 0
+}
+
+.ckmod_rtl .ckmod_button {
+    float: right
+}
+
+.ckmod_hc .ckmod_button {
+    border: 1px solid black;
+    padding: 3px 5px;
+    margin: -2px 4px 0 -2px
+}
+
+.ckmod_button_on {
+    -moz-box-shadow: 0 1px 5px rgba(0,0,0,.6) inset,0 1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.6) inset,0 1px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 5px rgba(0,0,0,.6) inset,0 1px 0 rgba(0,0,0,.2);
+    background: #b5b5b5;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#aaa),to(#cacaca));
+    background-image: -moz-linear-gradient(top,#aaa,#cacaca);
+    background-image: -webkit-linear-gradient(top,#aaa,#cacaca);
+    background-image: -o-linear-gradient(top,#aaa,#cacaca);
+    background-image: -ms-linear-gradient(top,#aaa,#cacaca);
+    background-image: linear-gradient(top,#aaa,#cacaca);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#aaaaaa',endColorstr='#cacaca')
+}
+
+.ckmod_hc .ckmod_button_on,.ckmod_hc a.ckmod_button_off:hover,.ckmod_hc a.ckmod_button_off:focus,.ckmod_hc a.ckmod_button_off:active,.ckmod_hc a.ckmod_button_disabled:hover,.ckmod_hc a.ckmod_button_disabled:focus,.ckmod_hc a.ckmod_button_disabled:active {
+    border-width: 3px;
+    padding: 1px 3px
+}
+
+.ckmod_button_disabled .ckmod_button_icon {
+    opacity: .3
+}
+
+.ckmod_hc .ckmod_button_disabled {
+    opacity: .5
+}
+
+a.ckmod_button_on:hover,a.ckmod_button_on:focus,a.ckmod_button_on:active {
+    -moz-box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2)
+}
+
+a.ckmod_button_off:hover,a.ckmod_button_off:focus,a.ckmod_button_off:active,a.ckmod_button_disabled:hover,a.ckmod_button_disabled:focus,a.ckmod_button_disabled:active {
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,.3) inset;
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,.3) inset;
+    box-shadow: 0 0 1px rgba(0,0,0,.3) inset;
+    background: #ccc;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#ccc));
+    background-image: -moz-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -webkit-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -o-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -ms-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: linear-gradient(top,#f2f2f2,#ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#f2f2f2',endColorstr='#cccccc')
+}
+
+.ckmod_button_icon {
+    cursor: inherit;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+    width: 16px;
+    height: 16px;
+    float: left;
+    display: inline-block
+}
+
+.ckmod_rtl .ckmod_button_icon {
+    float: right
+}
+
+.ckmod_hc .ckmod_button_icon {
+    display: none
+}
+
+.ckmod_button_label {
+    display: none;
+    padding-left: 3px;
+    margin-top: 1px;
+    line-height: 17px;
+    vertical-align: middle;
+    float: left;
+    cursor: default;
+    color: #474747;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5)
+}
+
+.ckmod_rtl .ckmod_button_label {
+    padding-right: 3px;
+    padding-left: 0;
+    float: right
+}
+
+.ckmod_hc .ckmod_button_label {
+    padding: 0;
+    display: inline-block;
+    font-size: 12px
+}
+
+.ckmod_button_arrow {
+    display: inline-block;
+    margin: 8px 0 0 1px;
+    width: 0;
+    height: 0;
+    cursor: default;
+    vertical-align: top;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 3px solid #474747
+}
+
+.ckmod_rtl .ckmod_button_arrow {
+    margin-right: 5px;
+    margin-left: 0
+}
+
+.ckmod_hc .ckmod_button_arrow {
+    font-size: 10px;
+    margin: 3px -2px 0 3px;
+    width: auto;
+    border: 0
+}
+
+.ckmod_toolbar_separator {
+    float: left;
+    background-color: #c0c0c0;
+    background-color: rgba(0,0,0,.2);
+    margin: 5px 2px 0;
+    height: 18px;
+    width: 1px;
+    -webkit-box-shadow: 1px 0 1px rgba(255,255,255,.5);
+    -moz-box-shadow: 1px 0 1px rgba(255,255,255,.5);
+    box-shadow: 1px 0 1px rgba(255,255,255,.5)
+}
+
+.ckmod_rtl .ckmod_toolbar_separator {
+    float: right;
+    -webkit-box-shadow: -1px 0 1px rgba(255,255,255,.1);
+    -moz-box-shadow: -1px 0 1px rgba(255,255,255,.1);
+    box-shadow: -1px 0 1px rgba(255,255,255,.1)
+}
+
+.ckmod_hc .ckmod_toolbar_separator {
+    width: 0;
+    border-left: 1px solid;
+    margin: 1px 5px 0 0
+}
+
+.ckmod_toolbar_break {
+    display: block;
+    clear: left
+}
+
+.ckmod_rtl .ckmod_toolbar_break {
+    clear: right
+}
+
+.ckmod_toolbox_collapser {
+    width: 12px;
+    height: 11px;
+    float: right;
+    margin: 11px 0 0;
+    font-size: 0;
+    cursor: default;
+    text-align: center;
+    border: 1px solid #a6a6a6;
+    border-bottom-color: #979797;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    background: #e4e4e4;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
+    background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -o-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
+    background-image: linear-gradient(top,#fff,#e4e4e4);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4')
+}
+
+.ckmod_toolbox_collapser:hover {
+    background: #ccc;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#ccc));
+    background-image: -moz-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -webkit-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -o-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -ms-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: linear-gradient(top,#f2f2f2,#ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#f2f2f2',endColorstr='#cccccc')
+}
+
+.ckmod_toolbox_collapser.ckmod_toolbox_collapser_min {
+    margin: 0 2px 4px
+}
+
+.ckmod_rtl .ckmod_toolbox_collapser {
+    float: left
+}
+
+.ckmod_toolbox_collapser .ckmod_arrow {
+    display: inline-block;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    margin-top: 1px;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid #474747;
+    border-top: 3px solid transparent
+}
+
+.ckmod_toolbox_collapser.ckmod_toolbox_collapser_min .ckmod_arrow {
+    margin-top: 4px;
+    border-bottom-color: transparent;
+    border-top-color: #474747
+}
+
+.ckmod_hc .ckmod_toolbox_collapser .ckmod_arrow {
+    font-size: 8px;
+    width: auto;
+    border: 0;
+    margin-top: 0;
+    margin-right: 2px
+}
+
+.ckmod_menubutton {
+    display: block
+}
+
+.ckmod_menuitem span {
+    cursor: default
+}
+
+.ckmod_menubutton:hover,.ckmod_menubutton:focus,.ckmod_menubutton:active {
+    background-color: #d3d3d3;
+    display: block
+}
+
+.ckmod_hc .ckmod_menubutton {
+    padding: 2px
+}
+
+.ckmod_hc .ckmod_menubutton:hover,.ckmod_hc .ckmod_menubutton:focus,.ckmod_hc .ckmod_menubutton:active {
+    border: 2px solid;
+    padding: 0
+}
+
+.ckmod_menubutton_inner {
+    display: table-row
+}
+
+.ckmod_menubutton_icon,.ckmod_menubutton_label,.ckmod_menuarrow {
+    display: table-cell
+}
+
+.ckmod_menubutton_icon {
+    background-color: #d7d8d7;
+    opacity: .70;
+    filter: alpha(opacity=70);
+    padding: 4px
+}
+
+.ckmod_hc .ckmod_menubutton_icon {
+    height: 16px;
+    width: 0;
+    padding: 4px 0
+}
+
+.ckmod_menubutton:hover .ckmod_menubutton_icon,.ckmod_menubutton:focus .ckmod_menubutton_icon,.ckmod_menubutton:active .ckmod_menubutton_icon {
+    background-color: #d0d2d0
+}
+
+.ckmod_menubutton_disabled:hover .ckmod_menubutton_icon,.ckmod_menubutton_disabled:focus .ckmod_menubutton_icon,.ckmod_menubutton_disabled:active .ckmod_menubutton_icon {
+    opacity: .3;
+    filter: alpha(opacity=30)
+}
+
+.ckmod_menubutton_label {
+    padding: 0 5px;
+    background-color: transparent;
+    width: 100%;
+    vertical-align: middle
+}
+
+.ckmod_menubutton_disabled .ckmod_menubutton_label {
+    opacity: .3;
+    filter: alpha(opacity=30)
+}
+
+.ckmod_menubutton:hover,.ckmod_menubutton:focus,.ckmod_menubutton:active {
+    background-color: #eff0ef
+}
+
+.ckmod_panel_frame .ckmod_menubutton_label {
+    display: none
+}
+
+.ckmod_menuseparator {
+    background-color: #d3d3d3;
+    height: 1px;
+    filter: alpha(opacity=70);
+    opacity: .70
+}
+
+.ckmod_menuarrow {
+    background-image: url(images/arrow.png);
+    background-position: 0 10px;
+    background-repeat: no-repeat;
+    padding: 0 5px
+}
+
+.ckmod_rtl .ckmod_menuarrow {
+    background-position: 5px -13px;
+    background-repeat: no-repeat
+}
+
+.ckmod_menuarrow span {
+    display: none
+}
+
+.ckmod_hc .ckmod_menuarrow span {
+    vertical-align: middle;
+    display: inline
+}
+
+.ckmod_combo {
+    display: inline-block;
+    float: left
+}
+
+.ckmod_rtl .ckmod_combo {
+    float: right
+}
+
+.ckmod_hc .ckmod_combo {
+    margin-top: -2px
+}
+
+.ckmod_combo_label {
+    display: none;
+    float: left;
+    line-height: 26px;
+    vertical-align: top;
+    margin-right: 5px
+}
+
+.ckmod_rtl .ckmod_combo_label {
+    float: right;
+    margin-left: 5px;
+    margin-right: 0
+}
+
+.ckmod_combo_button {
+    display: inline-block;
+    float: left;
+    margin: 0 6px 5px 0;
+    border: 1px solid #a6a6a6;
+    border-bottom-color: #979797;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    background: #e4e4e4;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
+    background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -o-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
+    background-image: linear-gradient(top,#fff,#e4e4e4);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4')
+}
+
+.ckmod_combo_off a.ckmod_combo_button:hover,.ckmod_combo_off a.ckmod_combo_button:focus {
+    background: #ccc;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#ccc));
+    background-image: -moz-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -webkit-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -o-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -ms-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: linear-gradient(top,#f2f2f2,#ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#f2f2f2',endColorstr='#cccccc');
+    outline: 0
+}
+
+.ckmod_combo_off a.ckmod_combo_button:active,.ckmod_combo_on a.ckmod_combo_button {
+    border: 1px solid #777;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 1px 5px rgba(0,0,0,.6) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 1px 5px rgba(0,0,0,.6) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5),0 1px 5px rgba(0,0,0,.6) inset;
+    background: #b5b5b5;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#aaa),to(#cacaca));
+    background-image: -moz-linear-gradient(top,#aaa,#cacaca);
+    background-image: -webkit-linear-gradient(top,#aaa,#cacaca);
+    background-image: -o-linear-gradient(top,#aaa,#cacaca);
+    background-image: -ms-linear-gradient(top,#aaa,#cacaca);
+    background-image: linear-gradient(top,#aaa,#cacaca);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#aaaaaa',endColorstr='#cacaca')
+}
+
+.ckmod_combo_on a.ckmod_combo_button:hover,.ckmod_combo_on a.ckmod_combo_button:focus,.ckmod_combo_on a.ckmod_combo_button:active {
+    -moz-box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 6px rgba(0,0,0,.7) inset,0 1px 0 rgba(0,0,0,.2)
+}
+
+.ckmod_rtl .ckmod_combo_button {
+    float: right;
+    margin-left: 5px;
+    margin-right: 0
+}
+
+.ckmod_hc a.ckmod_combo_button {
+    padding: 3px
+}
+
+.ckmod_hc .ckmod_combo_on a.ckmod_combo_button,.ckmod_hc .ckmod_combo_off a.ckmod_combo_button:hover,.ckmod_hc .ckmod_combo_off a.ckmod_combo_button:focus,.ckmod_hc .ckmod_combo_off a.ckmod_combo_button:active {
+    border-width: 3px;
+    padding: 1px
+}
+
+.ckmod_combo_text {
+    line-height: 26px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    float: left;
+    cursor: default;
+    color: #474747;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    width: 60px
+}
+
+.ckmod_rtl .ckmod_combo_text {
+    float: right;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 10px
+}
+
+.ckmod_hc .ckmod_combo_text {
+    line-height: 18px;
+    font-size: 12px
+}
+
+.ckmod_combo_open {
+    cursor: default;
+    display: inline-block;
+    font-size: 0;
+    height: 19px;
+    line-height: 17px;
+    margin: 1px 7px 1px;
+    width: 5px
+}
+
+.ckmod_hc .ckmod_combo_open {
+    height: 12px
+}
+
+.ckmod_combo_arrow {
+    margin: 11px 0 0;
+    float: left;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 3px solid #474747
+}
+
+.ckmod_hc .ckmod_combo_arrow {
+    font-size: 10px;
+    width: auto;
+    border: 0;
+    margin-top: 3px
+}
+
+.ckmod_combo_disabled .ckmod_combo_inlinelabel,.ckmod_combo_disabled .ckmod_combo_open {
+    opacity: .3
+}
+
+.ckmod_path {
+    float: left;
+    margin: -2px 0 2px
+}
+
+.ckmod_path_item,.ckmod_path_empty {
+    display: inline-block;
+    float: left;
+    padding: 3px 4px;
+    margin-right: 2px;
+    cursor: default;
+    text-decoration: none;
+    outline: 0;
+    border: 0;
+    color: #4c4c4c;
+    text-shadow: 0 1px 0 #fff;
+    font-weight: bold;
+    font-size: 11px
+}
+
+.ckmod_rtl .ckmod_path,.ckmod_rtl .ckmod_path_item,.ckmod_rtl .ckmod_path_empty {
+    float: right
+}
+
+a.ckmod_path_item:hover,a.ckmod_path_item:focus,a.ckmod_path_item:active {
+    background-color: #bfbfbf;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.5) inset,0 1px 0 rgba(255,255,255,.5);
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.5) inset,0 1px 0 rgba(255,255,255,.5);
+    box-shadow: 0 0 4px rgba(0,0,0,.5) inset,0 1px 0 rgba(255,255,255,.5)
+}
+
+.ckmod_hc a.ckmod_path_item:hover,.ckmod_hc a.ckmod_path_item:focus,.ckmod_hc a.ckmod_path_item:active {
+    border: 2px solid;
+    padding: 1px 2px
+}
+
+.ckmod_button__source_label,.ckmod_button__sourcedialog_label {
+    display: inline
+}
+
+.ckmod_combo__fontsize .ckmod_combo_text {
+    width: 30px
+}
+
+.ckmod_combopanel__fontsize {
+    width: 120px
+}
+
+.ckmod_source {
+    font-family: 'Courier New',Monospace;
+    font-size: small;
+    background-color: #fff;
+    white-space: pre
+}
+
+.ckmod_wysiwyg_frame,.ckmod_wysiwyg_div {
+    background-color: #fff
+}
+
+.ckmod_chrome {
+    visibility: inherit
+}
+
+.ckmod_voice_label {
+    display: none
+}
+
+legend.ckmod_voice_label {
+    display: none
+}
+
+.ckmod_bottom {
+    padding-bottom: 3px
+}
+
+.ckmod_combo_text {
+    margin-bottom: -1px;
+    margin-top: 1px
+}
+
+.ckmod_button__about_icon {
+    background: url(icons.png) no-repeat 0 -0px!important
+}
+
+.ckmod_rtl .ckmod_button__anchor_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__anchor_icon {
+    background: url(icons.png) no-repeat 0 -32px!important
+}
+
+.ckmod_ltr .ckmod_button__anchor_icon {
+    background: url(icons.png) no-repeat 0 -64px!important
+}
+
+.ckmod_button__bgcolor_icon {
+    background: url(icons.png) no-repeat 0 -96px!important
+}
+
+.ckmod_button__bidiltr_icon {
+    background: url(icons.png) no-repeat 0 -128px!important
+}
+
+.ckmod_button__bidirtl_icon {
+    background: url(icons.png) no-repeat 0 -160px!important
+}
+
+.ckmod_button__blockquote_icon {
+    background: url(icons.png) no-repeat 0 -192px!important
+}
+
+.ckmod_button__bold_icon {
+    background: url(icons.png) no-repeat 0 -224px!important
+}
+
+.ckmod_rtl .ckmod_button__bulletedlist_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__bulletedlist_icon {
+    background: url(icons.png) no-repeat 0 -256px!important
+}
+
+.ckmod_ltr .ckmod_button__bulletedlist_icon {
+    background: url(icons.png) no-repeat 0 -288px!important
+}
+
+.ckmod_button__button_icon {
+    background: url(icons.png) no-repeat 0 -320px!important
+}
+
+.ckmod_button__checkbox_icon {
+    background: url(icons.png) no-repeat 0 -352px!important
+}
+
+.ckmod_rtl .ckmod_button__copy_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__copy_icon {
+    background: url(icons.png) no-repeat 0 -384px!important
+}
+
+.ckmod_ltr .ckmod_button__copy_icon {
+    background: url(icons.png) no-repeat 0 -416px!important
+}
+
+.ckmod_button__creatediv_icon {
+    background: url(icons.png) no-repeat 0 -448px!important
+}
+
+.ckmod_rtl .ckmod_button__cut_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__cut_icon {
+    background: url(icons.png) no-repeat 0 -480px!important
+}
+
+.ckmod_ltr .ckmod_button__cut_icon {
+    background: url(icons.png) no-repeat 0 -512px!important
+}
+
+.ckmod_rtl .ckmod_button__docprops_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__docprops_icon {
+    background: url(icons.png) no-repeat 0 -544px!important
+}
+
+.ckmod_ltr .ckmod_button__docprops_icon {
+    background: url(icons.png) no-repeat 0 -576px!important
+}
+
+.ckmod_rtl .ckmod_button__find_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__find_icon {
+    background: url(icons.png) no-repeat 0 -608px!important
+}
+
+.ckmod_ltr .ckmod_button__find_icon {
+    background: url(icons.png) no-repeat 0 -640px!important
+}
+
+.ckmod_button__flash_icon {
+    background: url(icons.png) no-repeat 0 -672px!important
+}
+
+.ckmod_button__form_icon {
+    background: url(icons.png) no-repeat 0 -704px!important
+}
+
+.ckmod_button__hiddenfield_icon {
+    background: url(icons.png) no-repeat 0 -736px!important
+}
+
+.ckmod_button__horizontalrule_icon {
+    background: url(icons.png) no-repeat 0 -768px!important
+}
+
+.ckmod_button__icons_icon {
+    background: url(icons.png) no-repeat 0 -800px!important
+}
+
+.ckmod_button__iframe_icon {
+    background: url(icons.png) no-repeat 0 -2095px!important
+}
+
+.ckmod_button__image_icon {
+    background: url(icons.png) no-repeat 0 -2127px!important
+}
+
+.ckmod_button__imagebutton_icon {
+    background: url(icons.png) no-repeat 0 -2159px!important
+}
+
+.ckmod_rtl .ckmod_button__indent_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__indent_icon {
+    background: url(icons.png) no-repeat 0 -2191px!important
+}
+
+.ckmod_ltr .ckmod_button__indent_icon {
+    background: url(icons.png) no-repeat 0 -2223px!important
+}
+
+.ckmod_button__italic_icon {
+    background: url(icons.png) no-repeat 0 -2255px!important
+}
+
+.ckmod_button__justifyblock_icon {
+    background: url(icons.png) no-repeat 0 -2287px!important
+}
+
+.ckmod_button__justifycenter_icon {
+    background: url(icons.png) no-repeat 0 -2319px!important
+}
+
+.ckmod_button__justifyleft_icon {
+    background: url(icons.png) no-repeat 0 -2351px!important
+}
+
+.ckmod_button__justifyright_icon {
+    background: url(icons.png) no-repeat 0 -2383px!important
+}
+
+.ckmod_button__link_icon {
+    background: url(icons.png) no-repeat 0 -2415px!important
+}
+
+.ckmod_button__maximize_icon {
+    background: url(icons.png) no-repeat 0 -2447px!important
+}
+
+.ckmod_rtl .ckmod_button__newpage_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__newpage_icon {
+    background: url(icons.png) no-repeat 0 -2479px!important
+}
+
+.ckmod_ltr .ckmod_button__newpage_icon {
+    background: url(icons.png) no-repeat 0 -2511px!important
+}
+
+.ckmod_rtl .ckmod_button__numberedlist_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__numberedlist_icon {
+    background: url(icons.png) no-repeat 0 -2543px!important
+}
+
+.ckmod_ltr .ckmod_button__numberedlist_icon {
+    background: url(icons.png) no-repeat 0 -2575px!important
+}
+
+.ckmod_rtl .ckmod_button__outdent_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__outdent_icon {
+    background: url(icons.png) no-repeat 0 -2607px!important
+}
+
+.ckmod_ltr .ckmod_button__outdent_icon {
+    background: url(icons.png) no-repeat 0 -2639px!important
+}
+
+.ckmod_rtl .ckmod_button__pagebreak_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__pagebreak_icon {
+    background: url(icons.png) no-repeat 0 -2671px!important
+}
+
+.ckmod_ltr .ckmod_button__pagebreak_icon {
+    background: url(icons.png) no-repeat 0 -2703px!important
+}
+
+.ckmod_rtl .ckmod_button__paste_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__paste_icon {
+    background: url(icons.png) no-repeat 0 -2735px!important
+}
+
+.ckmod_ltr .ckmod_button__paste_icon {
+    background: url(icons.png) no-repeat 0 -2767px!important
+}
+
+.ckmod_rtl .ckmod_button__pastefromword_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__pastefromword_icon {
+    background: url(icons.png) no-repeat 0 -2799px!important
+}
+
+.ckmod_ltr .ckmod_button__pastefromword_icon {
+    background: url(icons.png) no-repeat 0 -2831px!important
+}
+
+.ckmod_rtl .ckmod_button__pastetext_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__pastetext_icon {
+    background: url(icons.png) no-repeat 0 -2863px!important
+}
+
+.ckmod_ltr .ckmod_button__pastetext_icon {
+    background: url(icons.png) no-repeat 0 -2895px!important
+}
+
+.ckmod_button__placeholder_icon {
+    background: url(icons.png) no-repeat 0 -2927px!important
+}
+
+.ckmod_rtl .ckmod_button__preview_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__preview_icon {
+    background: url(icons.png) no-repeat 0 -2959px!important
+}
+
+.ckmod_ltr .ckmod_button__preview_icon {
+    background: url(icons.png) no-repeat 0 -2991px!important
+}
+
+.ckmod_button__print_icon {
+    background: url(icons.png) no-repeat 0 -3023px!important
+}
+
+.ckmod_button__radio_icon {
+    background: url(icons.png) no-repeat 0 -3055px!important
+}
+
+.ckmod_rtl .ckmod_button__redo_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__redo_icon {
+    background: url(icons.png) no-repeat 0 -3087px!important
+}
+
+.ckmod_ltr .ckmod_button__redo_icon {
+    background: url(icons.png) no-repeat 0 -3119px!important
+}
+
+.ckmod_button__removeformat_icon {
+    background: url(icons.png) no-repeat 0 -3151px!important
+}
+
+.ckmod_button__replace_icon {
+    background: url(icons.png) no-repeat 0 -3183px!important
+}
+
+.ckmod_button__save_icon {
+    background: url(icons.png) no-repeat 0 -3215px!important
+}
+
+.ckmod_button__scayt_icon {
+    background: url(icons.png) no-repeat 0 -3247px!important
+}
+
+.ckmod_rtl .ckmod_button__select_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__select_icon {
+    background: url(icons.png) no-repeat 0 -3279px!important
+}
+
+.ckmod_ltr .ckmod_button__select_icon {
+    background: url(icons.png) no-repeat 0 -3311px!important
+}
+
+.ckmod_button__selectall_icon {
+    background: url(icons.png) no-repeat 0 -3343px!important
+}
+
+.ckmod_rtl .ckmod_button__showblocks_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__showblocks_icon {
+    background: url(icons.png) no-repeat 0 -3375px!important
+}
+
+.ckmod_ltr .ckmod_button__showblocks_icon {
+    background: url(icons.png) no-repeat 0 -3407px!important
+}
+
+.ckmod_button__smiley_icon {
+    background: url(icons.png) no-repeat 0 -3439px!important
+}
+
+.ckmod_rtl .ckmod_button__source_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__source_icon {
+    background: url(icons.png) no-repeat 0 -3471px!important
+}
+
+.ckmod_ltr .ckmod_button__source_icon {
+    background: url(icons.png) no-repeat 0 -3503px!important
+}
+
+.ckmod_button__specialchar_icon {
+    background: url(icons.png) no-repeat 0 -3535px!important
+}
+
+.ckmod_button__spellchecker_icon {
+    background: url(icons.png) no-repeat 0 -3567px!important
+}
+
+.ckmod_button__strike_icon {
+    background: url(icons.png) no-repeat 0 -3599px!important
+}
+
+.ckmod_button__subscript_icon {
+    background: url(icons.png) no-repeat 0 -3631px!important
+}
+
+.ckmod_button__superscript_icon {
+    background: url(icons.png) no-repeat 0 -3663px!important
+}
+
+.ckmod_button__table_icon {
+    background: url(icons.png) no-repeat 0 -3695px!important
+}
+
+.ckmod_rtl .ckmod_button__templates_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__templates_icon {
+    background: url(icons.png) no-repeat 0 -3727px!important
+}
+
+.ckmod_ltr .ckmod_button__templates_icon {
+    background: url(icons.png) no-repeat 0 -3759px!important
+}
+
+.ckmod_rtl .ckmod_button__textarea_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__textarea_icon {
+    background: url(icons.png) no-repeat 0 -3791px!important
+}
+
+.ckmod_ltr .ckmod_button__textarea_icon {
+    background: url(icons.png) no-repeat 0 -3823px!important
+}
+
+.ckmod_button__textcolor_icon {
+    background: url(icons.png) no-repeat 0 -3855px!important
+}
+
+.ckmod_button__textfield_icon {
+    background: url(icons.png) no-repeat 0 -3887px!important
+}
+
+.ckmod_button__underline_icon {
+    background: url(icons.png) no-repeat 0 -3919px!important
+}
+
+.ckmod_rtl .ckmod_button__undo_icon,.ckmod_mixed_dir_content .ckmod_rtl .ckmod_button__undo_icon {
+    background: url(icons.png) no-repeat 0 -3951px!important
+}
+
+.ckmod_ltr .ckmod_button__undo_icon {
+    background: url(icons.png) no-repeat 0 -3983px!important
+}
+
+.ckmod_button__unlink_icon {
+    background: url(icons.png) no-repeat 0 -4015px!important
+}
+
+
+/*
+editor
+*/
+
+
+
+
+div.ckmod_dialog_ui_scaytItemList {
+	border: 1px solid #c9cccf;
+}
+
+.ckmod_scaytItemList-child {
+	position: relative;
+	padding: 6px 30px 6px 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ckmod_scaytItemList-child:hover {
+	background: #ebebeb;
+}
+
+.ckmod_scaytItemList-child .ckmod_scaytItemList_remove {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	width: 26px;
+	height: 26px;
+}
+
+
+
+
+/*
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+.ckmod_dialog {
+    visibility: visible
+}
+
+.ckmod_dialog_body {
+    z-index: 1;
+    background: #EFEFFF;
+    border: 1px solid #b2b2b2;
+    border-bottom-color: #999;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.15);
+    box-shadow: 0 0 3px rgba(0,0,0,.15)
+}
+
+.ckmod_browser_gecko19 .ckmod_dialog_body {
+    position: relative
+}
+
+.ckmod_dialog strong {
+    font-weight: bold
+}
+
+.ckmod_dialog_title {
+    font-weight: bold;
+    font-size: 13px;
+    cursor: move;
+    position: relative;
+    color: #474747;
+    text-shadow: 0 1px 0 rgba(255,255,255,.75);
+    border-bottom: 1px solid #999;
+    padding: 6px 10px;
+    -moz-border-radius: 2px 2px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    -moz-box-shadow: 0 1px 0 #fff inset;
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    background: #CFCFFF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#CFCFFF));
+    background-image: -moz-linear-gradient(top,#f5f5f5,#CFCFFF);
+    background-image: -webkit-linear-gradient(top,#f5f5f5,#CFCFFF);
+    background-image: -o-linear-gradient(top,#f5f5f5,#CFCFFF);
+    background-image: -ms-linear-gradient(top,#f5f5f5,#CFCFFF);
+    background-image: linear-gradient(top,#f5f5f5,#CFCFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#f5f5f5',endColorstr='#CFCFFF')
+}
+
+.ckmod_dialog_contents {
+    background-color: #fff;
+    overflow: auto;
+    padding: 15px 10px 5px 10px;
+    margin-top: 30px;
+    border-top: 1px solid #bfbfbf;
+    -moz-border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px
+}
+
+.ckmod_dialog_contents_body {
+    overflow: auto;
+    padding: 17px 10px 5px 10px;
+    margin-top: 22px
+}
+
+.ckmod_dialog_footer {
+    text-align: right;
+    position: relative;
+    border: 0;
+    outline: 1px solid #bfbfbf;
+    -moz-box-shadow: 0 1px 0 #fff inset;
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    -moz-border-radius: 0 0 2px 2px;
+    -webkit-border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px;
+    background: #CFCFFF;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#EFEFFF),to(#CFCFFF));
+    background-image: -moz-linear-gradient(top,#EFEFFF,#CFCFFF);
+    background-image: -webkit-linear-gradient(top,#EFEFFF,#CFCFFF);
+    background-image: -o-linear-gradient(top,#EFEFFF,#CFCFFF);
+    background-image: -ms-linear-gradient(top,#EFEFFF,#CFCFFF);
+    background-image: linear-gradient(top,#EFEFFF,#CFCFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#EFEFFF',endColorstr='#CFCFFF')
+}
+
+.ckmod_rtl .ckmod_dialog_footer {
+    text-align: left
+}
+
+.ckmod_hc .ckmod_dialog_footer {
+    outline: 0;
+    border-top: 1px solid #fff
+}
+
+.ckmod_dialog .ckmod_resizer {
+    margin-top: 22px
+}
+
+.ckmod_dialog .ckmod_resizer_rtl {
+    margin-left: 5px
+}
+
+.ckmod_dialog .ckmod_resizer_ltr {
+    margin-right: 5px
+}
+
+.ckmod_dialog_tabs {
+    height: 24px;
+    display: inline-block;
+    margin: 5px 0 0;
+    position: absolute;
+    z-index: 2;
+    left: 10px
+}
+
+.ckmod_rtl .ckmod_dialog_tabs {
+    right: 10px
+}
+
+a.ckmod_dialog_tab {
+    height: 16px;
+    padding: 4px 8px;
+    margin-right: 3px;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 16px;
+    outline: 0;
+    color: #595959;
+    border: 1px solid #bfbfbf;
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    background: #d4d4d4;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fafafa),to(#ededed));
+    background-image: -moz-linear-gradient(top,#fafafa,#ededed);
+    background-image: -webkit-linear-gradient(top,#fafafa,#ededed);
+    background-image: -o-linear-gradient(top,#fafafa,#ededed);
+    background-image: -ms-linear-gradient(top,#fafafa,#ededed);
+    background-image: linear-gradient(top,#fafafa,#ededed);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#fafafa',endColorstr='#ededed')
+}
+
+.ckmod_rtl a.ckmod_dialog_tab {
+    margin-right: 0;
+    margin-left: 3px
+}
+
+a.ckmod_dialog_tab:hover {
+    background: #EFEFFF;
+    background: -moz-linear-gradient(top,#EFEFFF 0,#dfdfdf 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#EFEFFF),color-stop(100%,#dfdfdf));
+    background: -webkit-linear-gradient(top,#EFEFFF 0,#dfdfdf 100%);
+    background: -o-linear-gradient(top,#EFEFFF 0,#dfdfdf 100%);
+    background: -ms-linear-gradient(top,#EFEFFF 0,#dfdfdf 100%);
+    background: linear-gradient(to bottom,#EFEFFF 0,#dfdfdf 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EFEFFF',endColorstr='#dfdfdf',GradientType=0)
+}
+
+a.ckmod_dialog_tab_selected {
+    background: #fff;
+    color: #383838;
+    border-bottom-color: #fff;
+    cursor: default;
+    filter: none
+}
+
+a.ckmod_dialog_tab_selected:hover {
+    background: #ededed;
+    background: -moz-linear-gradient(top,#ededed 0,#fff 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#ededed),color-stop(100%,#fff));
+    background: -webkit-linear-gradient(top,#ededed 0,#fff 100%);
+    background: -o-linear-gradient(top,#ededed 0,#fff 100%);
+    background: -ms-linear-gradient(top,#ededed 0,#fff 100%);
+    background: linear-gradient(to bottom,#ededed 0,#fff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',endColorstr='#ffffff',GradientType=0)
+}
+
+.ckmod_hc a.ckmod_dialog_tab:hover,.ckmod_hc a.ckmod_dialog_tab_selected {
+    border: 3px solid;
+    padding: 2px 6px
+}
+
+.ckmod_single_page .ckmod_dialog_tabs {
+    display: none
+}
+
+.ckmod_single_page .ckmod_dialog_contents {
+    padding-top: 5px;
+    margin-top: 0;
+    border-top: 0
+}
+
+.ckmod_dialog_close_button {
+    background-image: url(images/close.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    z-index: 5
+}
+
+.ckmod_hidpi .ckmod_dialog_close_button {
+    background-image: url(images/hidpi/close.png);
+    background-size: 16px
+}
+
+.ckmod_dialog_close_button span {
+    display: none
+}
+
+.ckmod_hc .ckmod_dialog_close_button span {
+    display: inline;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    top: 3px
+}
+
+.ckmod_ltr .ckmod_dialog_close_button {
+    right: 5px
+}
+
+.ckmod_rtl .ckmod_dialog_close_button {
+    left: 6px
+}
+
+.ckmod_dialog_close_button {
+    top: 4px
+}
+
+div.ckmod_disabled .ckmod_dialog_ui_labeled_content div * {
+    background-color: #ddd;
+    cursor: default
+}
+
+.ckmod_dialog_ui_vbox table,.ckmod_dialog_ui_hbox table {
+    margin: auto
+}
+
+.ckmod_dialog_ui_vbox_child {
+    padding: 5px 0
+}
+
+.ckmod_dialog_ui_hbox {
+    width: 100%
+}
+
+.ckmod_dialog_ui_hbox_first,.ckmod_dialog_ui_hbox_child,.ckmod_dialog_ui_hbox_last {
+    vertical-align: top
+}
+
+.ckmod_ltr .ckmod_dialog_ui_hbox_first,.ckmod_ltr .ckmod_dialog_ui_hbox_child {
+    padding-right: 10px
+}
+
+.ckmod_rtl .ckmod_dialog_ui_hbox_first,.ckmod_rtl .ckmod_dialog_ui_hbox_child {
+    padding-left: 10px
+}
+
+.ckmod_ltr .ckmod_dialog_footer_buttons .ckmod_dialog_ui_hbox_first,.ckmod_ltr .ckmod_dialog_footer_buttons .ckmod_dialog_ui_hbox_child {
+    padding-right: 5px
+}
+
+.ckmod_rtl .ckmod_dialog_footer_buttons .ckmod_dialog_ui_hbox_first,.ckmod_rtl .ckmod_dialog_footer_buttons .ckmod_dialog_ui_hbox_child {
+    padding-left: 5px;
+    padding-right: 0
+}
+
+.ckmod_hc div.ckmod_dialog_ui_input_text,.ckmod_hc div.ckmod_dialog_ui_input_password,.ckmod_hc div.ckmod_dialog_ui_input_textarea,.ckmod_hc div.ckmod_dialog_ui_input_select,.ckmod_hc div.ckmod_dialog_ui_input_file {
+    border: 1px solid
+}
+
+textarea.ckmod_dialog_ui_input_textarea {
+    overflow: auto;
+    resize: none
+}
+
+input.ckmod_dialog_ui_input_text,input.ckmod_dialog_ui_input_password,textarea.ckmod_dialog_ui_input_textarea {
+    background-color: #fff;
+    border: 1px solid #c9cccf;
+    border-top-color: #aeb3b9;
+    padding: 4px 6px;
+    outline: 0;
+    width: 100%;
+    *width: 95%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,.15) inset
+}
+
+input.ckmod_dialog_ui_input_text:hover,input.ckmod_dialog_ui_input_password:hover,textarea.ckmod_dialog_ui_input_textarea:hover {
+    border: 1px solid #aeb3b9;
+    border-top-color: #a0a6ad
+}
+
+input.ckmod_dialog_ui_input_text:focus,input.ckmod_dialog_ui_input_password:focus,textarea.ckmod_dialog_ui_input_textarea:focus,select.ckmod_dialog_ui_input_select:focus {
+    outline: 0;
+    border: 1px solid #139ff7;
+    border-top-color: #1392e9
+}
+
+a.ckmod_dialog_ui_button {
+    display: inline-block;
+    *display: inline;
+    *zoom:1;padding: 3px 0;
+    margin: 0;
+    text-align: center;
+    color: #333;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #b6b6b6;
+    border-bottom-color: #999;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.5),0 0 2px rgba(255,255,255,.15) inset,0 1px 0 rgba(255,255,255,.15) inset;
+    background: #e4e4e4;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e4e4e4));
+    background-image: -moz-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -webkit-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -o-linear-gradient(top,#fff,#e4e4e4);
+    background-image: -ms-linear-gradient(top,#fff,#e4e4e4);
+    background-image: linear-gradient(top,#fff,#e4e4e4);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#ffffff',endColorstr='#e4e4e4')
+}
+
+span.ckmod_dialog_ui_button {
+    padding: 0 12px
+}
+
+a.ckmod_dialog_ui_button:hover {
+    border-color: #9e9e9e;
+    background: #ccc;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f2f2f2),to(#ccc));
+    background-image: -moz-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -webkit-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -o-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: -ms-linear-gradient(top,#f2f2f2,#ccc);
+    background-image: linear-gradient(top,#f2f2f2,#ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#f2f2f2',endColorstr='#cccccc')
+}
+
+a.ckmod_dialog_ui_button:focus,a.ckmod_dialog_ui_button:active {
+    border-color: #969696;
+    outline: 0;
+    -moz-box-shadow: 0 0 6px rgba(0,0,0,.4) inset;
+    -webkit-box-shadow: 0 0 6px rgba(0,0,0,.4) inset;
+    box-shadow: 0 0 6px rgba(0,0,0,.4) inset
+}
+
+.ckmod_hc a.ckmod_dialog_ui_button:hover,.ckmod_hc a.ckmod_dialog_ui_button:focus,.ckmod_hc a.ckmod_dialog_ui_button:active {
+    border: 3px solid;
+    padding-top: 1px;
+    padding-bottom: 1px
+}
+
+.ckmod_hc a.ckmod_dialog_ui_button:hover span,.ckmod_hc a.ckmod_dialog_ui_button:focus span,.ckmod_hc a.ckmod_dialog_ui_button:active span {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.ckmod_dialog_footer_buttons a.ckmod_dialog_ui_button span {
+    color: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px
+}
+
+a.ckmod_dialog_ui_button_ok {
+    color: #fff;
+    text-shadow: 0 -1px 0 #55830c;
+    border-color: #62a60a #62a60a #4d9200;
+    background: #69b10b;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#9ad717),to(#69b10b));
+    background-image: -webkit-linear-gradient(top,#9ad717,#69b10b);
+    background-image: -o-linear-gradient(top,#9ad717,#69b10b);
+    background-image: linear-gradient(to bottom,#9ad717,#69b10b);
+    background-image: -moz-linear-gradient(top,#9ad717,#69b10b);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#9ad717',endColorstr='#69b10b')
+}
+
+a.ckmod_dialog_ui_button_ok:hover {
+    border-color: #5b9909 #5b9909 #478500;
+    background: #88be14;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#88be14),color-stop(100%,#5d9c0a));
+    background: -webkit-linear-gradient(top,#88be14 0,#5d9c0a 100%);
+    background: -o-linear-gradient(top,#88be14 0,#5d9c0a 100%);
+    background: linear-gradient(to bottom,#88be14 0,#5d9c0a 100%);
+    background: -moz-linear-gradient(top,#88be14 0,#5d9c0a 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#88be14',endColorstr='#5d9c0a',GradientType=0)
+}
+
+a.ckmod_dialog_ui_button span {
+    text-shadow: 0 1px 0 #fff
+}
+
+a.ckmod_dialog_ui_button_ok span {
+    text-shadow: 0 -1px 0 #55830c
+}
+
+span.ckmod_dialog_ui_button {
+    cursor: pointer
+}
+
+a.ckmod_dialog_ui_button_ok:focus,a.ckmod_dialog_ui_button_ok:active,a.ckmod_dialog_ui_button_cancel:focus,a.ckmod_dialog_ui_button_cancel:active {
+    border-width: 2px;
+    padding: 2px 0
+}
+
+a.ckmod_dialog_ui_button_ok:focus,a.ckmod_dialog_ui_button_ok:active {
+    border-color: #568c0a
+}
+
+a.ckmod_dialog_ui_button_ok:focus span,a.ckmod_dialog_ui_button_ok:active span,a.ckmod_dialog_ui_button_cancel:focus span,a.ckmod_dialog_ui_button_cancel:active span {
+    padding: 0 11px
+}
+
+.ckmod_dialog_footer_buttons {
+    display: inline-table;
+    margin: 5px;
+    width: auto;
+    position: relative;
+    vertical-align: middle
+}
+
+div.ckmod_dialog_ui_input_select {
+    display: table
+}
+
+select.ckmod_dialog_ui_input_select {
+    height: 24px;
+    line-height: 24px;
+    background-color: #fff;
+    border: 1px solid #c9cccf;
+    border-top-color: #aeb3b9;
+    padding: 2px 6px;
+    outline: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,.15) inset
+}
+
+.ckmod_dialog_ui_input_file {
+    width: 100%;
+    height: 25px
+}
+
+.ckmod_hc .ckmod_dialog_ui_labeled_content input:focus,.ckmod_hc .ckmod_dialog_ui_labeled_content select:focus,.ckmod_hc .ckmod_dialog_ui_labeled_content textarea:focus {
+    outline: 1px dotted
+}
+
+.ckmod_dialog .ckmod_dark_background {
+    background-color: #dedede
+}
+
+.ckmod_dialog .ckmod_light_background {
+    background-color: #EFEFFF
+}
+
+.ckmod_dialog .ckmod_centered {
+    text-align: center
+}
+
+.ckmod_dialog a.ckmod_btn_reset {
+    float: right;
+    background: url(images/refresh.png) top left no-repeat;
+    width: 16px;
+    height: 16px;
+    border: 1px none;
+    font-size: 1px
+}
+
+.ckmod_hidpi .ckmod_dialog a.ckmod_btn_reset {
+    background-size: 16px;
+    background-image: url(images/hidpi/refresh.png)
+}
+
+.ckmod_rtl .ckmod_dialog a.ckmod_btn_reset {
+    float: left
+}
+
+.ckmod_dialog a.ckmod_btn_locked,.ckmod_dialog a.ckmod_btn_unlocked {
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    border: none 1px;
+    font-size: 1px
+}
+
+.ckmod_dialog a.ckmod_btn_locked .ckmod_icon {
+    display: none
+}
+
+.ckmod_rtl .ckmod_dialog a.ckmod_btn_locked,.ckmod_rtl .ckmod_dialog a.ckmod_btn_unlocked {
+    float: right
+}
+
+.ckmod_dialog a.ckmod_btn_locked {
+    background-image: url(images/lock.png)
+}
+
+.ckmod_dialog a.ckmod_btn_unlocked {
+    background-image: url(images/lock-open.png)
+}
+
+.ckmod_hidpi .ckmod_dialog a.ckmod_btn_unlocked,.ckmod_hidpi .ckmod_dialog a.ckmod_btn_locked {
+    background-size: 16px
+}
+
+.ckmod_hidpi .ckmod_dialog a.ckmod_btn_locked {
+    background-image: url(images/hidpi/lock.png)
+}
+
+.ckmod_hidpi .ckmod_dialog a.ckmod_btn_unlocked {
+    background-image: url(images/hidpi/lock-open.png)
+}
+
+.ckmod_dialog .ckmod_btn_over {
+    border: outset 1px;
+    cursor: pointer
+}
+
+.ckmod_dialog .ImagePreviewBox {
+    border: 2px ridge black;
+    overflow: scroll;
+    height: 200px;
+    width: 300px;
+    padding: 2px;
+    background-color: white
+}
+
+.ckmod_dialog .ImagePreviewBox table td {
+    white-space: normal
+}
+
+.ckmod_dialog .ImagePreviewLoader {
+    position: absolute;
+    white-space: normal;
+    overflow: hidden;
+    height: 160px;
+    width: 230px;
+    margin: 2px;
+    padding: 2px;
+    opacity: .9;
+    filter: alpha(opacity = 90);
+    background-color: #e4e4e4
+}
+
+.ckmod_dialog .FlashPreviewBox {
+    white-space: normal;
+    border: 2px ridge black;
+    overflow: auto;
+    height: 160px;
+    width: 390px;
+    padding: 2px;
+    background-color: white
+}
+
+.ckmod_dialog .ckmod_pastetext {
+    width: 346px;
+    height: 170px
+}
+
+.ckmod_dialog .ckmod_pastetext textarea {
+    width: 340px;
+    height: 170px;
+    resize: none
+}
+
+.ckmod_dialog iframe.ckmod_pasteframe {
+    width: 346px;
+    height: 130px;
+    background-color: white;
+    border: 1px solid #aeb3b9;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px
+}
+
+.ckmod_dialog .ckmod_hand {
+    cursor: pointer
+}
+
+.ckmod_disabled {
+    color: #a0a0a0
+}
+
+.ckmod_dialog_body .ckmod_label {
+    display: none
+}
+
+.ckmod_dialog_body label {
+    display: inline;
+    margin-bottom: auto;
+    cursor: default
+}
+
+.ckmod_dialog_body label.ckmod_required {
+    font-weight: bold
+}
+
+a.ckmod_smile {
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    padding: .3em 0
+}
+
+a.ckmod_smile img {
+    vertical-align: middle
+}
+
+a.ckmod_specialchar {
+    cursor: inherit;
+    display: block;
+    height: 1.25em;
+    padding: .2em .3em;
+    text-align: center
+}
+
+a.ckmod_smile,a.ckmod_specialchar {
+    border: 1px solid transparent
+}
+
+a.ckmod_smile:hover,a.ckmod_smile:focus,a.ckmod_smile:active,a.ckmod_specialchar:hover,a.ckmod_specialchar:focus,a.ckmod_specialchar:active {
+    background: #fff;
+    outline: 0
+}
+
+a.ckmod_smile:hover,a.ckmod_specialchar:hover {
+    border-color: #888
+}
+
+a.ckmod_smile:focus,a.ckmod_smile:active,a.ckmod_specialchar:focus,a.ckmod_specialchar:active {
+    border-color: #139ff7
+}
+
+.ckmod_dialog_contents a.colorChooser {
+    display: block;
+    margin-top: 6px;
+    margin-left: 10px;
+    width: 80px
+}
+
+.ckmod_rtl .ckmod_dialog_contents a.colorChooser {
+    margin-right: 10px
+}
+
+.ckmod_dialog_ui_checkbox_input:focus,.ckmod_dialog_ui_radio_input:focus,.ckmod_btn_over {
+    outline: 1px dotted #696969
+}
+
+.ckmod_iframe_shim {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: alpha(opacity = 0);
+    width: 100%;
+    height: 100%
+}
+
+
+	/* TAB */
+
+
+
+.ckmod_table-faked-selection-editor *::selection, table[data-cke-table-faked-selection-table] *::selection {
+	background: transparent;
+}
+
+.ckmod_table-faked-selection {
+	background: darkgray !important;
+	color: black;
+}
+.ckmod_table-faked-selection a {
+	color: black;
+}
+.ckmod_editable:focus .ckmod_table-faked-selection {
+	/* We have to use !important here, as td might specify it's own background, thus table selection
+	would not be visible. */
+	background: #0076cb !important;
+	color: white;
+}
+.ckmod_editable:focus .ckmod_table-faked-selection a {
+	color: white;
+}
+.ckmod_table-faked-selection::-moz-selection, .ckmod_table-faked-selection ::-moz-selection {
+	background: transparent;
+}
+.ckmod_table-faked-selection::selection, .ckmod_table-faked-selection ::selection {
+	background: transparent;
+}
+
+/* Change the cursor when selecting cells (#706).
+ *
+ * This solution does not work in IE, Edge and Safari due to upstream isues:
+ * https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/3419602/
+ * https://bugs.webkit.org/show_bug.cgi?id=53341
+ */
+table[data-cke-table-faked-selection-table] {
+	cursor: cell;
+}
+
+
+/* dialog */
+
+
+
+.ckmod_dialog_open {
+	overflow: hidden;
+}
+
+.ckmod_dialog_container {
+	position: fixed;
+	overflow-y: auto;
+	overflow-x: auto;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10010;
+}
+
+.ckmod_dialog_body {
+	position: relative;
+}
+
+
+
+
+
+/*
+Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+*/
+
+html.ckmod_copyformatting_active {
+	min-height: 100%;
+}
+
+/* There is no cursor in CUR format for IE/Edge as that browser
+ does not support custom cursor in [contenteditable] area.
+ Ticket for this issue:
+ https://connect.microsoft.com/IE/feedback/details/1070215/cant-change-cursor-in-contenteditable-using-css */
+.ckmod_copyformatting_disabled,
+.ckmod_copyformatting_disabled a,
+.ckmod_copyformatting_disabled .ckmod_editable {
+	cursor: url(../cursors/cursor-disabled.svg) 12 1, auto;
+}
+
+.ckmod_copyformatting_disabled .ckmod_top a,
+.ckmod_copyformatting_disabled .ckmod_bottom a {
+	cursor: default;
+}
+
+/* Added `!important` rule as a fix for overriding the cursor by the Table Resize plugin.
+ The `!important` rule is used because the Table Resize plugin creates a `<div>` which changes the cursor using inlined styles. */
+.ckmod_copyformatting_active,
+.ckmod_copyformatting_active.ckmod_editable,
+.ckmod_copyformatting_active .ckmod_editable,
+.ckmod_copyformatting_active a,
+.ckmod_copyformatting_active table,
+.ckmod_copyformatting_active div[data-cke-temp],
+.ckmod_copyformatting_tableresize_cursor div[data-cke-temp] {
+	cursor: url(../cursors/cursor.svg) 12 1, auto !important;
+}
+
+.ckmod_screen_reader_only {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	padding: 0;
+	border: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+
+
+
+
