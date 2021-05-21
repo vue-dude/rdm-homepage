@@ -5223,6 +5223,36 @@ function Datasource() {
     };
   }();
 
+  var get =
+  /*#__PURE__*/
+  function () {
+    var _ref2 = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee2(api) {
+      var data,
+          options,
+          _args2 = arguments;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              data = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {};
+              options = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : {};
+              return _context2.abrupt("return", axios_default.a.create().get(getPath(api), data, options));
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function get(_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
   var getValidI18nKey = function getValidI18nKey(i18nKey) {
     var trns = _.get(config.translations, "".concat(globals.getLocale(), ".").concat(i18nKey, ".__0"));
 
@@ -5285,9 +5315,11 @@ function Datasource() {
   var getStructure = function getStructure() {
     if (config.structure) {
       return config.structure;
-    }
+    } // 'get' is used for flat file mode here, as some servers dont allow 'post'.
+    // in cms mode, the auth and reload ist done via post in 'cmsUpdateTranslations'
 
-    return post('/structure').then(function (res) {
+
+    return get('/structure').then(function (res) {
       updateConfig(res.data);
       config.structure = generateStructure(res.data);
       console.log('DS:getStructure config.structure = ', config.structure);
@@ -5300,7 +5332,9 @@ function Datasource() {
   this.getStructure = getStructure;
 
   var getTranslations = function getTranslations() {
-    return post('/translations').then(function (res) {
+    // 'get' is used for flat file mode here, as some servers dont allow 'post'.
+    // in cms mode, the auth and reload ist done via post in 'cmsUpdateTranslations'
+    return get('/translations').then(function (res) {
       config.translations = res.data; // TODO merge
 
       return res.data;
@@ -5481,17 +5515,17 @@ function Datasource() {
   var ckSaveChanges =
   /*#__PURE__*/
   function () {
-    var _ref2 = _asyncToGenerator(
+    var _ref3 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee2() {
+    regeneratorRuntime.mark(function _callee3() {
       var silent,
           saveData,
-          _args2 = arguments;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          _args3 = arguments;
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              silent = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : false;
+              silent = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : false;
               saveData = {
                 data: []
               };
@@ -5505,7 +5539,7 @@ function Datasource() {
                 });
               });
 
-              return _context2.abrupt("return", post(config.saveApi, saveData).then(function (res) {
+              return _context3.abrupt("return", post(config.saveApi, saveData).then(function (res) {
                 hardUpdateTranslations(globals.getLocale(), res.data);
                 silent ? null : window.alert('Changes successfully saved');
                 return {
@@ -5518,14 +5552,14 @@ function Datasource() {
 
             case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
     return function ckSaveChanges() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -5534,26 +5568,26 @@ function Datasource() {
   var cmsPublish =
   /*#__PURE__*/
   function () {
-    var _ref3 = _asyncToGenerator(
+    var _ref4 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3() {
+    regeneratorRuntime.mark(function _callee4() {
       var res;
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.next = 2;
+              _context4.next = 2;
               return ckSaveChanges(true);
 
             case 2:
-              res = _context3.sent;
+              res = _context4.sent;
 
               if (!(res.success === true)) {
-                _context3.next = 5;
+                _context4.next = 5;
                 break;
               }
 
-              return _context3.abrupt("return", post(config.pulishApi).then(function (res) {
+              return _context4.abrupt("return", post(config.pulishApi).then(function (res) {
                 console.log('DS:cmsPublish res = ', res);
                 window.alert('Changes successfully published'); // globals.setCmsPublishFeedback({ success: true })
               }).catch(function (evt) {
@@ -5565,27 +5599,27 @@ function Datasource() {
 
             case 5:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
     return function cmsPublish() {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
 
   var cmsUpdateTranslations =
   /*#__PURE__*/
   function () {
-    var _ref4 = _asyncToGenerator(
+    var _ref5 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee4(data) {
+    regeneratorRuntime.mark(function _callee5(data) {
       var saveData, loc;
-      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               // needed also with ck!
               saveData = {
@@ -5608,7 +5642,7 @@ function Datasource() {
                 });
               });
 
-              return _context4.abrupt("return", post(config.saveApi, saveData).then(function (res) {
+              return _context5.abrupt("return", post(config.saveApi, saveData).then(function (res) {
                 hardUpdateTranslations(globals.getLocale(), res.data);
               }).catch(function (evt) {
                 console.warn('DS:cmsUpdateTranslations ERROR = ', evt);
@@ -5617,28 +5651,28 @@ function Datasource() {
 
             case 4:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4);
+      }, _callee5);
     }));
 
-    return function cmsUpdateTranslations(_x2) {
-      return _ref4.apply(this, arguments);
+    return function cmsUpdateTranslations(_x3) {
+      return _ref5.apply(this, arguments);
     };
   }();
 
   var authenticate =
   /*#__PURE__*/
   function () {
-    var _ref5 = _asyncToGenerator(
+    var _ref6 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee5(email) {
-      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    regeneratorRuntime.mark(function _callee6(email) {
+      return regeneratorRuntime.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              return _context5.abrupt("return", post(config.authApi, {
+              return _context6.abrupt("return", post(config.authApi, {
                 email: email
               }).then(function (res) {
                 if (globals.DEV_MODE) {
@@ -5654,14 +5688,14 @@ function Datasource() {
 
             case 1:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5);
+      }, _callee6);
     }));
 
-    return function authenticate(_x3) {
-      return _ref5.apply(this, arguments);
+    return function authenticate(_x4) {
+      return _ref6.apply(this, arguments);
     };
   }();
 
@@ -5670,14 +5704,14 @@ function Datasource() {
   var authenticationConfirm =
   /*#__PURE__*/
   function () {
-    var _ref6 = _asyncToGenerator(
+    var _ref7 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee6(token) {
-      return regeneratorRuntime.wrap(function _callee6$(_context6) {
+    regeneratorRuntime.mark(function _callee7(token) {
+      return regeneratorRuntime.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              return _context6.abrupt("return", post(config.authConfirmApi).then(function (res) {
+              return _context7.abrupt("return", post(config.authConfirmApi).then(function (res) {
                 if (res.data.success === true) {
                   globals.setAdminToken(token);
                 } else {
@@ -5687,14 +5721,14 @@ function Datasource() {
 
             case 1:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }));
 
-    return function authenticationConfirm(_x4) {
-      return _ref6.apply(this, arguments);
+    return function authenticationConfirm(_x5) {
+      return _ref7.apply(this, arguments);
     };
   }();
 
@@ -5946,18 +5980,22 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var Background = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4f6530e5-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/HeadNavigation.vue?vue&type=template&id=700c1533&
-var HeadNavigationvue_type_template_id_700c1533_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"head-navigation",class:[_vm.$store.state.mediaTag]},[_c('div',{staticClass:"left",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],domProps:{"innerHTML":_vm._s(_vm.$t('head.title'))},on:{"click":_vm.onClickHeadline}}),_c('div',{staticClass:"right"},[_c('div',{staticClass:"logo",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],on:{"click":function($event){$event.stopPropagation();return _vm.onClickLogo($event)}}},[_c('div',{staticClass:"image"})]),_c('div',{staticClass:"legal",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],domProps:{"innerHTML":_vm._s(_vm.right)}})])])}
-var HeadNavigationvue_type_template_id_700c1533_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4f6530e5-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/HeadNavigation.vue?vue&type=template&id=14eb912c&
+var HeadNavigationvue_type_template_id_14eb912c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"head-navigation",class:[_vm.$store.state.mediaTag]},[_c('div',{staticClass:"left",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],domProps:{"innerHTML":_vm._s(_vm.$t('head.title'))},on:{"click":_vm.onClickHeadline}}),_c('div',{staticClass:"right"},[_c('div',{staticClass:"logo",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],on:{"click":function($event){$event.stopPropagation();return _vm.onClickLogo($event)}}},[_c('div',{staticClass:"image"})]),_c('div',{staticClass:"legal",class:[{ 'logo-shifted': _vm.logoShifted }, _vm.$store.state.mediaTag],domProps:{"innerHTML":_vm._s(_vm.right)}})])])}
+var HeadNavigationvue_type_template_id_14eb912c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/HeadNavigation.vue?vue&type=template&id=700c1533&
+// CONCATENATED MODULE: ./src/components/HeadNavigation.vue?vue&type=template&id=14eb912c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--11-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/HeadNavigation.vue?vue&type=script&lang=js&
 
 
 
 
+//
+//
+//
+//
 //
 //
 //
@@ -6072,8 +6110,8 @@ var HeadNavigationvue_type_style_index_0_lang_scss_ = __webpack_require__("bdc9"
 
 var HeadNavigation_component = normalizeComponent(
   components_HeadNavigationvue_type_script_lang_js_,
-  HeadNavigationvue_type_template_id_700c1533_render,
-  HeadNavigationvue_type_template_id_700c1533_staticRenderFns,
+  HeadNavigationvue_type_template_id_14eb912c_render,
+  HeadNavigationvue_type_template_id_14eb912c_staticRenderFns,
   false,
   null,
   null,
